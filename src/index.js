@@ -1,6 +1,7 @@
 import css from "./style.css";
 import Task from "./addTask";
 import { pubsub } from './pubsub.js';
+import { AddTask } from "./addTask";
 
 // function renderHeader() {
 //     const content = document.getElementById("content");
@@ -33,3 +34,4 @@ function renderTemplate() {
 }
 
 renderTemplate();
+AddTask.render();

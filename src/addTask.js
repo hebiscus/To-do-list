@@ -24,8 +24,9 @@ export const AddTask = {
         const sidebar = document.querySelector(".sidebar");
         const addButton = document.createElement("button");
         addButton.classList.add("addButton");
+        addButton.innerText = "Add new";
         addButton.addEventListener('click', AddTask.add);
-        container.appendChild(addButton);
+        sidebar.appendChild(addButton);
       },
     //   add: ev => {
     //     ev.preventDefault();
@@ -36,6 +37,6 @@ export const AddTask = {
     //     //tell anyone who is listening that a movie was added
     //     console.log(`MOVIE FORM: just movieAdded "${title}"`);
     //     pubsub.publish('movieAdded', title);
-    
+
      
 }
