@@ -1,3 +1,70 @@
+* {
+    font-family: 'Cairo', sans-serif;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
 #content {
-    color: red;
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 12% 5% 70% 2% 1fr;
+    grid-template-rows: 11% 1% 70% 1fr;
+    background-color: #878fff;
+    gap: 2rem
+}
+
+.header {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    grid-column: 2 / 5;
+    grid-row: 1;
+    background-color: white;
+    border-radius: 0% 0% 20px 20px;
+    border-right: 5px solid;
+    border-left: 5px solid;
+    border-bottom: 5px solid;
+}
+
+.headerText {
+    font-size: 6rem;
+    font-weight: 600;
+    font-family: 'Cairo', sans-serif;
+}
+
+.sidebar {
+    grid-column: 1 / 3;
+    grid-row: 2 / 5;
+    background-color: white;
+    border-radius: 0% 20px 20px 0%;
+    border-right: 5px solid;
+    border-top: 5px solid;;
+}
+
+.taskspace {
+    grid-column: 3 / 4;
+    grid-row: 3 / 4;
+    background-color: white;
+    border-radius: 20px;
+    border: 5px solid;
 }
