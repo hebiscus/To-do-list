@@ -25,7 +25,7 @@ export const AddTask = {
         const addButton = document.createElement("button");
         addButton.classList.add("addButton");
         addButton.innerText = "Add new";
-        addButton.addEventListener('click', AddTask.add);
+        addButton.addEventListener('click', AddTask.popupModal);
         sidebar.appendChild(addButton);
       },
     //   add: ev => {
@@ -37,6 +37,37 @@ export const AddTask = {
     //     //tell anyone who is listening that a movie was added
     //     console.log(`MOVIE FORM: just movieAdded "${title}"`);
     //     pubsub.publish('movieAdded', title);
+    popupModal: function popupModal() {
+        const content = document.getElementById("content");
+        const modalContainer = document.createElement("section");
+        modalContainer.classList.add("modal");
+        content.appendChild(modalContainer);
+
+        const modalContent = document.createElement("div");
+        modalContent.classList.add("modal-content");
+        modalContainer.appendChild(modalContent);
+
+        const closeModalButton = document.createElement("button");
+        closeModalButton.classList.add("close-btn");
+        
+        closeModalButton.onclick = function(){
+            modalContainer.style.display = "none";
+        }
+        window.onclick = function(e){
+        if(e.target == modalContainer){
+            modalContainer.style.display = "none";
+            
+            }
+        }
+
+        modalContent.appendChild(closeModalButton);
+
+        const modalText =  document.createElement("p");
+        modalText.innerText = "that's a test";
+        modalContent.appendChild(modalText);
+
+        modalContainer.style.display = "block";
+    }
 
      
 }

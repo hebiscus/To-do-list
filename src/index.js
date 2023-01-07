@@ -3,15 +3,6 @@ import Task from "./addTask";
 import { pubsub } from './pubsub.js';
 import { AddTask } from "./addTask";
 
-// function renderHeader() {
-//     const content = document.getElementById("content");
-//     const headerDiv = document.createElement("div");
-//     headerDiv.classList.add("header");
-//     content.appendChild(headerDiv);
-// }
-
-// renderHeader();
-
 function renderTemplate() {
     const content = document.getElementById("content");
 
