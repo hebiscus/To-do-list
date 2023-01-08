@@ -62,9 +62,48 @@ export const AddTask = {
 
         modalContent.appendChild(closeModalButton);
 
-        const modalText =  document.createElement("p");
-        modalText.innerText = "that's a test";
-        modalContent.appendChild(modalText);
+        const modalForm = document.createElement("form");
+        modalForm.classList.add("modalform");
+        modalContent.appendChild(modalForm);
+
+        const formName = document.createElement("input");
+        formName.setAttribute("type", "text");
+        formName.classList.add("form-name");
+        modalForm.appendChild(formName);
+
+        const formDescription = document.createElement("input");
+        formDescription.setAttribute("type", "text");
+        formDescription.classList.add("form-description");
+        modalForm.appendChild(formDescription);
+
+        const formDate = document.createElement("input");
+        formDate.setAttribute("type", "date");
+        formDate.classList.add("form-date");
+        modalForm.appendChild(formDate);
+
+        const formPriority = document.createElement("select");
+        formPriority.classList.add("form-priority");
+        modalForm.appendChild(formPriority);
+
+        const lowPriority = document.createElement("option");
+        lowPriority.setAttribute("value", "low priority");
+        lowPriority.innerText = "low priority";
+        formPriority.appendChild(lowPriority);
+
+        const mediumPriority = document.createElement("option");
+        mediumPriority.setAttribute("value", "medium priority");
+        mediumPriority.innerText = "medium priority";
+        formPriority.appendChild(mediumPriority);
+
+        const highPriority = document.createElement("option");
+        highPriority.setAttribute("value", "high priority");
+        highPriority.innerText = "high priority";
+        formPriority.appendChild(highPriority);
+
+        const formSubmit = document.createElement("input");
+        formSubmit.setAttribute("type", "submit");
+        formSubmit.classList.add("form-submit");
+        modalForm.appendChild(formSubmit);
 
         modalContainer.style.display = "block";
     }
