@@ -21,22 +21,12 @@ export const Task = class {
 export const AddTask = {
     render: container => {
         //build button to add a task
-        const sidebar = document.querySelector(".sidebar");
         const addButton = document.createElement("button");
         addButton.classList.add("addButton");
         addButton.innerText = "Add new";
         addButton.addEventListener('click', AddTask.popupModal);
-        sidebar.appendChild(addButton);
+        container.appendChild(addButton);
       },
-    //   add: ev => {
-    //     ev.preventDefault();
-    //     let task = new Task();
-    //     let title = input.value;
-    //     input.value = ''; //clear the form
-    
-    //     //tell anyone who is listening that a movie was added
-    //     console.log(`MOVIE FORM: just movieAdded "${title}"`);
-    //     pubsub.publish('movieAdded', title);
     popupModal: function popupModal() {
         const content = document.getElementById("content");
         const modalContainer = document.createElement("section");
@@ -67,13 +57,15 @@ export const AddTask = {
         modalContent.appendChild(modalForm);
 
         const formName = document.createElement("input");
-        formName.setAttribute("type", "text");
         formName.classList.add("form-name");
+        formName.setAttribute("type", "text");
+        formName.setAttribute("placeholder", "Task name");
         modalForm.appendChild(formName);
 
         const formDescription = document.createElement("input");
-        formDescription.setAttribute("type", "text");
         formDescription.classList.add("form-description");
+        formDescription.setAttribute("type", "text");
+        formDescription.setAttribute("placeholder", "Description");
         modalForm.appendChild(formDescription);
 
         const formDate = document.createElement("input");
@@ -106,7 +98,15 @@ export const AddTask = {
         modalForm.appendChild(formSubmit);
 
         modalContainer.style.display = "block";
-    }
-
-     
+    },
+    add: ev => {
+        ev.preventDefault();
+        let task = new Task();
+        let title = input.value;
+        input.value = ''; //clear the form
+    
+        //tell anyone who is listening that a movie was added
+        console.log(`MOVIE FORM: just movieAdded "${title}"`);
+        pubsub.publish('movieAdded', title);
+    },
 }

@@ -25,4 +25,12 @@ function renderTemplate() {
 }
 
 renderTemplate();
-AddTask.render();
+
+(function renderModules() {
+    const sidebar = document.querySelector(".sidebar");
+    const taskSpace = document.querySelector(".taskspace");
+
+    AddTask.render(sidebar);
+
+
+})();
