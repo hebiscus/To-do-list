@@ -2,6 +2,7 @@ import css from "./style.css";
 import Task from "./addTask";
 import { pubsub } from './pubsub.js';
 import { AddTask } from "./addTask";
+import { allTasks } from "./allTasks";
 
 function renderTemplate() {
     const content = document.getElementById("content");
@@ -20,7 +21,7 @@ function renderTemplate() {
     content.appendChild(sidebarDiv);
 
     const taskspaceDiv = document.createElement("div");
-    taskspaceDiv.classList.add("taskspace");
+    taskspaceDiv.classList.add("tasks-space");
     content.appendChild(taskspaceDiv);
 }
 
@@ -28,9 +29,11 @@ renderTemplate();
 
 (function renderModules() {
     const sidebar = document.querySelector(".sidebar");
-    const taskSpace = document.querySelector(".taskspace");
+    const taskSpace = document.querySelector(".tasks-space");
 
     AddTask.render(sidebar);
+
+    allTasks.render(taskSpace);
 
 
 })();

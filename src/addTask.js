@@ -96,7 +96,6 @@ export const AddTask = {
         formSubmit.setAttribute("type", "submit");
         formSubmit.classList.add("form-submit");
         modalForm.appendChild(formSubmit);
-        // formSubmit.preventDefault();
         formSubmit.addEventListener("click", AddTask.add);
     },
     add: ev => {
