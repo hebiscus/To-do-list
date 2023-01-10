@@ -32,7 +32,6 @@ renderTemplate();
     const taskSpace = document.querySelector(".tasks-space");
 
     AddTask.render(sidebar);
-
     allTasks.render(taskSpace);
 
 

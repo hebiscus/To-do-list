@@ -1,3 +1,4 @@
+import { AddTask } from './addTask.js';
 import { pubsub } from './pubsub.js';
 
 export const allTasks = {
@@ -28,10 +29,10 @@ export const allTasks = {
     pubsub.publish('tasksUpdated', allTasks.list);
 
     //then the ui stuff for a new task list
-    const taskSpace = document.querySelector(".tasks-space");
+    const taskDiv= document.querySelector(".task-div");
     const taskContent = document.createElement("div");
     taskContent.classList.add("task-content");
-    taskSpace.appendChild(taskContent);
+    taskDiv.appendChild(taskContent);
 
     const statusCheckbox = document.createElement("input");
     statusCheckbox.classList.add("status-checkbox");
@@ -59,10 +60,7 @@ export const allTasks = {
     taskContent.appendChild(taskDelete);
 
 
-    // let ul = document.querySelector('.actor-container ul');
-    // ul.innerHTML = '';
-    // let df = document.createDocumentFragment();
-    // actors.list.forEach(name => {
+    // allTasks.list.forEach(name => {
     //   let li = document.createElement('li');
     //   li.innerText = name;
     //   df.appendChild(li);
