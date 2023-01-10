@@ -14,12 +14,12 @@ export const allTasks = {
     console.log('ACTORS: want to know if an actor is added');
     pubsub.subscribe('actorAdded', actors.actorAdded);
   },
-  actorAdded: name => {
+  taskAdded: name => {
     //actorAdded event was published
-    console.log(`ACTORS: I hear that ${name} was added`);
-    let list = new Set(actors.list);
+    console.log(`TASKS: I hear that ${name} was added`);
+    let list = new Set(allTasks.list);
     list.add(name);
-    actors.list = Array.from(list).sort();
+    allTasks.list = Array.from(list).sort();
 
     //tell everyone that an actor has been added to the list
     console.log('ACTORS: actorsUpdated the list');

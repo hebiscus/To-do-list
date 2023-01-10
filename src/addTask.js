@@ -1,12 +1,12 @@
 import { pubsub } from './pubsub.js';
 
 export const Task = class {
-    constructor(name, status, priority, dueDate, description) {
+    constructor(name, description, dueDate, priority, status) {
         this.name = name;
-        this.status = status;
-        this.priority = priority;
-        this.dueDate = dueDate;
         this.description = description;
+        this.dueDate = dueDate;
+        this.priority = priority;
+        this.status = status;        
     }
 
     toggleStatus() {
@@ -20,7 +20,6 @@ export const Task = class {
 
 export const AddTask = {
     render: container => {
-        //build button to add a task
         const addButton = document.createElement("button");
         addButton.classList.add("addButton");
         addButton.innerText = "Add new";
@@ -32,6 +31,7 @@ export const AddTask = {
         const modalContainer = document.createElement("section");
         modalContainer.classList.add("modal");
         content.appendChild(modalContainer);
+        modalContainer.style.display = "block";
 
         const modalContent = document.createElement("div");
         modalContent.classList.add("modal-content");
@@ -43,12 +43,12 @@ export const AddTask = {
         closeModalButton.onclick = function(){
             modalContainer.style.display = "none";
         }
-        window.onclick = function(e){
-        if(e.target == modalContainer){
-            modalContainer.style.display = "none";
+        // window.onclick = function(e){
+        // if(e.target == modalContainer){
+        //     modalContainer.style.display = "none";
             
-            }
-        }
+        //     }
+        // }
 
         modalContent.appendChild(closeModalButton);
 
@@ -96,17 +96,29 @@ export const AddTask = {
         formSubmit.setAttribute("type", "submit");
         formSubmit.classList.add("form-submit");
         modalForm.appendChild(formSubmit);
-
-        modalContainer.style.display = "block";
+        // formSubmit.preventDefault();
+        formSubmit.addEventListener("click", AddTask.add);
     },
     add: ev => {
         ev.preventDefault();
-        let task = new Task();
-        let title = input.value;
-        input.value = ''; //clear the form
-    
-        //tell anyone who is listening that a movie was added
-        console.log(`MOVIE FORM: just movieAdded "${title}"`);
-        pubsub.publish('movieAdded', title);
-    },
+        let nameInput = document.querySelector('.form-name');
+        let descriptionInput = document.querySelector('.form-description');
+        let dateInput = document.querySelector('.form-date');
+        let priorityInput = document.querySelector('.form-priority');
+        
+        let name = nameInput.value;
+        let description = descriptionInput.value;
+        let dueDate = dateInput.value;
+        let priority = priorityInput.value;
+        nameInput.value = ''; //clear the form
+        descriptionInput.value = '';
+        dateInput.value = '';
+        priorityInput.value = '';
+        
+        const newTask = new Task(name, description, dueDate, priority, "");
+
+        //tell subscribers that a task was added
+        console.log(`TASK FORM: just taskAdded ${name}`);
+        pubsub.publish('taskAdded', newTask);
+    }
 }
