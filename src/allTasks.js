@@ -95,3 +95,12 @@ export const allTasks = {
   //   pubsub.publish('actorDeleted', actors.list);
   // }
 };
+
+function changeDateFormat(date) {
+  const formattedDate = intlFormat(new Date(taskobject.dueDate), {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
+}

@@ -23,11 +23,41 @@ export const AddTask = {
         const addButton = document.createElement("button");
         addButton.classList.add("addButton");
         addButton.innerText = "Add new";
-        addButton.addEventListener('click', AddTask.popupModal);
+        addButton.addEventListener('click', function() {createModal()});
         container.appendChild(addButton);
       },
-    popupModal: function popupModal() {
-        const content = document.getElementById("content");
+    add: ev => {
+        ev.preventDefault();
+        let nameInput = document.querySelector('.form-name');
+        let descriptionInput = document.querySelector('.form-description');
+        let dateInput = document.querySelector('.form-date');
+        let priorityInput = document.querySelector('.form-priority');
+        
+        let name = nameInput.value;
+        let description = descriptionInput.value;
+        let dueDate = dateInput.value;
+        let priority = priorityInput.value;
+        nameInput.value = ''; //clear the form
+        descriptionInput.value = '';
+        dateInput.value = '';
+        priorityInput.value = '';
+        
+        const newTask = new Task(name, description, dueDate, priority, "");
+
+        //tell subscribers that a task was added
+        console.log(`TASK FORM: just taskAdded ${newTask.name}`);
+        pubsub.publish('taskAdded', newTask);
+    }
+}
+
+function createModal() {
+    const content = document.getElementById("content");
+
+    if(document.querySelector(".modal")){
+        console.log("Element exists");
+        const modalContainer = document.querySelector(".modal");
+        modalContainer.style.display = "block";
+    } else {
         const modalContainer = document.createElement("section");
         modalContainer.classList.add("modal");
         content.appendChild(modalContainer);
@@ -96,28 +126,6 @@ export const AddTask = {
         formSubmit.setAttribute("type", "submit");
         formSubmit.classList.add("form-submit");
         modalForm.appendChild(formSubmit);
-        formSubmit.addEventListener("click", AddTask.add);
-    },
-    add: ev => {
-        ev.preventDefault();
-        let nameInput = document.querySelector('.form-name');
-        let descriptionInput = document.querySelector('.form-description');
-        let dateInput = document.querySelector('.form-date');
-        let priorityInput = document.querySelector('.form-priority');
-        
-        let name = nameInput.value;
-        let description = descriptionInput.value;
-        let dueDate = dateInput.value;
-        let priority = priorityInput.value;
-        nameInput.value = ''; //clear the form
-        descriptionInput.value = '';
-        dateInput.value = '';
-        priorityInput.value = '';
-        
-        const newTask = new Task(name, description, dueDate, priority, "");
-
-        //tell subscribers that a task was added
-        console.log(`TASK FORM: just taskAdded ${newTask.name}`);
-        pubsub.publish('taskAdded', newTask);
+        formSubmit.addEventListener("click", AddTask.add)
     }
 }
