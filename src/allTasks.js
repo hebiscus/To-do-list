@@ -7,6 +7,29 @@ export const allTasks = {
     const topSection = document.createElement("div");
     topSection.classList.add("top-section");
     container.appendChild(topSection);
+    const sortByDiv = document.createElement("div");
+    sortByDiv.classList.add("sort-by");
+    topSection.appendChild(sortByDiv);
+    const sortText1 = document.createElement("p");
+    sortText1.innerText = "Sort by:";
+    const sortDate = document.createElement("button");
+    sortDate.classList.add("sort-date");
+    sortDate.innerText = "date added"
+    const sortText2 = document.createElement("p");
+    sortText2.innerText = "/";
+    const sortPriority = document.createElement("button");
+    sortPriority.classList.add("sort-priority");
+    sortPriority.innerText = "priority";
+    const priorityHeadline = document.createElement("h3");
+    priorityHeadline.classList.add("priority-headline");
+    priorityHeadline.innerText = "Priority"
+    const dueHeadline = document.createElement("h3");
+    dueHeadline.classList.add("due-headline")
+    dueHeadline.innerText = "Due";
+
+    sortByDiv.append(sortText1, sortDate, sortText2, sortPriority);
+    topSection.append(priorityHeadline, dueHeadline);
+    
     const taskDiv = document.createElement("div");
     taskDiv.classList.add("task-div")
     container.appendChild(taskDiv);
@@ -17,11 +40,11 @@ export const allTasks = {
     console.log('allTasks: wants to know if a task is added');
     pubsub.subscribe('taskAdded', allTasks.taskAdded);
   },
-  taskAdded: name => {
+  taskAdded: taskobject => {
     //taskAdded event was published
-    console.log(`TASKS: I hear that ${name} was added`);
+    console.log(`TASKS: I hear that ${taskobject.name} was added`);
     let list = new Set(allTasks.list);
-    list.add(name);
+    list.add(taskobject);
     allTasks.list = Array.from(list).sort();
 
     //tell everyone that a task has been added to the list
@@ -41,31 +64,27 @@ export const allTasks = {
 
     const tasknameText = document.createElement("p");
     tasknameText.classList.add("taskname-text");
+    tasknameText.innerText = `${taskobject.name}`;
     taskContent.appendChild(tasknameText);
 
-    const taskPriorityButton = document.createElement("p");
-    taskPriorityButton .classList.add("taskpriority-button");
+    const taskPriorityButton = document.createElement("button");
+    taskPriorityButton.classList.add("taskpriority-button");
+    taskPriorityButton.innerText = `${taskobject.priority}`;
     taskContent.appendChild(taskPriorityButton);
     
     const taskdueDateText = document.createElement("p");
     taskdueDateText.classList.add("taskdate-text");
+    taskdueDateText.innerText = `${taskobject.dueDate}`;
     taskContent.appendChild(taskdueDateText);
 
-    const taskEdit = document.createElement("p");
+    const taskEdit = document.createElement("button");
     taskEdit.classList.add("task-edit");
     taskContent.appendChild(taskEdit);
 
-    const taskDelete = document.createElement("p");
+    const taskDelete = document.createElement("button");
     taskDelete.classList.add("task-delete");
     taskContent.appendChild(taskDelete);
 
-
-    // allTasks.list.forEach(name => {
-    //   let li = document.createElement('li');
-    //   li.innerText = name;
-    //   df.appendChild(li);
-    // });
-    // ul.appendChild(df);
   },
   // actorDeleted: ev => {
   //   let item = ev.target.closest('li');

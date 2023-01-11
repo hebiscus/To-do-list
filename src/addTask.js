@@ -117,7 +117,7 @@ export const AddTask = {
         const newTask = new Task(name, description, dueDate, priority, "");
 
         //tell subscribers that a task was added
-        console.log(`TASK FORM: just taskAdded ${name}`);
+        console.log(`TASK FORM: just taskAdded ${newTask.name}`);
         pubsub.publish('taskAdded', newTask);
     }
 }

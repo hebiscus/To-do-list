@@ -1,5 +1,5 @@
 * {
-    font-family: 'Cairo', sans-serif;
+  font-family: 'Cairo', sans-serif;
 }
 
 html, body, div, span, applet, object, iframe,
@@ -19,7 +19,6 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-	font: inherit;
 	vertical-align: baseline;
 }
 
@@ -49,7 +48,6 @@ time, mark, audio, video {
 .headerText {
     font-size: 6rem;
     font-weight: 600;
-    font-family: 'Cairo', sans-serif;
 }
 
 .sidebar {
@@ -80,11 +78,50 @@ time, mark, audio, video {
 .top-section {
   width: 100%;
   height: 20%;
+  display: grid;
+  grid-template-columns: 65% 12% 12% 12%;
+  grid-template-rows: 1fr 1fr;
+  text-align: center;
+}
+
+.sort-by {
+  display: flex;
+  grid-column: 1;
+  grid-row: 1;
+  align-items: center;
+  font-size: 2.2rem;
+}
+
+.sort-date {
+  font-size: 2.2rem;
+}
+
+.sort-priority {
+  font-size: 2.2rem;
+}
+
+.priority-headline {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: end;
+  font-size: 2rem;
+}
+
+.due-headline {
+  grid-column: 3;
+  grid-row: 2;
+  align-self: end;
+  font-size: 2rem;
 }
 
 .task-div {
   width: 100%;
   flex: 1;
+}
+
+.task-content {
+  display: flex;
+  align-items: center;
 }
 
   .modal {
