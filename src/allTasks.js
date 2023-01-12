@@ -1,5 +1,6 @@
 import { AddTask } from './addTask.js';
 import { pubsub } from './pubsub.js';
+import format from 'date-fns/format';
 
 export const allTasks = {
   list: [],
@@ -74,7 +75,8 @@ export const allTasks = {
     
     const taskdueDateText = document.createElement("p");
     taskdueDateText.classList.add("taskdate-text");
-    taskdueDateText.innerText = `${taskobject.dueDate}`;
+    const formattedDate = changeDateFormat(taskobject.dueDate);
+    taskdueDateText.innerText = formattedDate;
     taskContent.appendChild(taskdueDateText);
 
     const taskEdit = document.createElement("button");
@@ -97,10 +99,6 @@ export const allTasks = {
 };
 
 function changeDateFormat(date) {
-  const formattedDate = intlFormat(new Date(taskobject.dueDate), {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
+  const formattedDate = format(new Date(date), 'd/M/yyyy');
+  return formattedDate;
 }
