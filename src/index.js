@@ -1,15 +1,12 @@
 import css from "./style.css";
-import Task from "./addTask";
-import { pubsub } from './pubsub.js';
 import { AddTask } from "./addTask";
 import { allTasks } from "./allTasks";
 
-function renderTemplate() {
+(function renderTemplate() {
     const content = document.getElementById("content");
 
     const headerDiv = document.createElement("div");
     headerDiv.classList.add("header");
-    content.appendChild(headerDiv);
 
     const headerText = document.createElement("h1");
     headerText.classList.add("headerText")
@@ -18,14 +15,27 @@ function renderTemplate() {
 
     const sidebarDiv = document.createElement("div");
     sidebarDiv.classList.add("sidebar");
-    content.appendChild(sidebarDiv);
+
+    const sidePanelDiv = document.createElement("div");
+    sidePanelDiv.classList.add("side-panel");
+    
+    const allTasksButton = document.createElement("button");
+    const todayTasksButton = document.createElement("button");
+    const thisWeekButton = document.createElement("button");
+    const completedButton = document.createElement("button");
+
+    const allTasksStats = document.createElement("div");
+    const todayTasksStats = document.createElement("div");
+    const thisWeekStats = document.createElement("div");
+    const completedStats = document.createElement("div");
 
     const taskspaceDiv = document.createElement("div");
     taskspaceDiv.classList.add("tasks-space");
-    content.appendChild(taskspaceDiv);
-}
 
-renderTemplate();
+    sidePanelDiv.append(allTasksButton, todayTasksButton, thisWeekButton, completedButton, allTasksStats, todayTasksStats, thisWeekStats, completedStats);
+    sidebarDiv.appendChild(sidePanelDiv);
+    content.append(headerDiv, sidebarDiv, taskspaceDiv);
+})();
 
 (function renderModules() {
     const sidebar = document.querySelector(".sidebar");

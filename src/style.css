@@ -65,6 +65,13 @@ time, mark, audio, video {
     align-self: center;
 }
 
+.side-panel {
+  height: 45%;
+  display: grid;
+  grid-template-columns: 70% 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
 .tasks-space {
     grid-column: 3 / 4;
     grid-row: 3 / 4;

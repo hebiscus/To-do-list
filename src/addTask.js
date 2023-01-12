@@ -24,7 +24,7 @@ export const AddTask = {
         addButton.classList.add("addButton");
         addButton.innerText = "Add new";
         addButton.addEventListener('click', function() {createModal()});
-        container.appendChild(addButton);
+        container.prepend(addButton);
       },
     add: ev => {
         ev.preventDefault();
