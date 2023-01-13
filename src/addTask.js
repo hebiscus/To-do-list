@@ -91,9 +91,10 @@ function createModal() {
         modalContent.appendChild(modalForm);
 
         const formName = document.createElement("input");
-        formName.classList.add("form-name");
         formName.setAttribute("type", "text");
+        formName.classList.add("form-name");
         formName.setAttribute("placeholder", "Task name");
+        formName.setAttribute("required", "");
         modalForm.appendChild(formName);
 
         const formDescription = document.createElement("input");
@@ -103,10 +104,11 @@ function createModal() {
         modalForm.appendChild(formDescription);
 
         const formDate = document.createElement("input");
+        formDate.classList.add("form-date");
         formDate.setAttribute("type", "date");
         const fromattedTodaysDate = formatTodaysDate(new Date);
         formDate.setAttribute("min", fromattedTodaysDate);
-        formDate.classList.add("form-date");
+        formDate.setAttribute("required", "");
         modalForm.appendChild(formDate);
 
         const formPriority = document.createElement("select");
