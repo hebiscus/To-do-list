@@ -26,8 +26,8 @@ time, mark, audio, video {
     height: 100vh;
     width: 100vw;
     display: grid;
-    grid-template-columns: 12% 5% 70% 2% 1fr;
-    grid-template-rows: 11% 1% 70% 1fr;
+    grid-template-columns: 9% 5% 70% 6% 1fr;
+    grid-template-rows: 11% 1% 75% 1fr;
     background-color: #878fff;
     gap: 2rem
 }
@@ -63,13 +63,53 @@ time, mark, audio, video {
 
 .addButton {
     align-self: center;
+    height: 2.7rem;
+    width: 7.7rem;
+    margin: 1.2rem;
+    margin-bottom: 0;
 }
 
 .side-panel {
   height: 45%;
-  display: grid;
-  grid-template-columns: 70% 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.sidepanel-left {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.sidepanel-left > button {
+  height: 2.9rem;
+  margin-left: 2rem;
+  font-size: 2.2rem;
+  border: none;
+  background-color: inherit;
+  text-align: left;
+}
+
+.sidepanel-left > button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.sidepanel-right {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.sidepanel-right > div {
+  height: 1.6rem;
+  width: 43%;
+  border: 2px solid;
+  border-radius: 50%;
+  margin-top: 1rem;
+  background-color: #ad70fe;
 }
 
 .tasks-space {
@@ -80,6 +120,8 @@ time, mark, audio, video {
     background-color: white;
     border-radius: 20px;
     border: 5px solid;
+    margin-left: 10%;
+    margin-right: 3%;
 }
 
 .top-section {
@@ -97,6 +139,20 @@ time, mark, audio, video {
   grid-row: 1;
   align-items: center;
   font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.sort-by > button:hover {
+  cursor: pointer;
+}
+
+.sort-by:first-child {
+  margin-left: 3.4%;
+}
+
+.sort-by > button {
+  border: none;
+  background-color: inherit;
 }
 
 .sort-date {
@@ -126,8 +182,10 @@ time, mark, audio, video {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 1%;
+  gap: 4%;
   align-items: center;
+  overflow: auto;
+  font-size: 1.8rem;
 }
 
 .task-content {

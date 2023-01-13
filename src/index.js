@@ -18,11 +18,20 @@ import { allTasks } from "./allTasks";
 
     const sidePanelDiv = document.createElement("div");
     sidePanelDiv.classList.add("side-panel");
+
+    const sidePanelLeft = document.createElement("div");
+    sidePanelLeft.classList.add("sidepanel-left");
+    const sidePanelRight = document.createElement("div");
+    sidePanelRight.classList.add("sidepanel-right");
     
     const allTasksButton = document.createElement("button");
+    allTasksButton.innerText = "All tasks";
     const todayTasksButton = document.createElement("button");
+    todayTasksButton.innerText = "Today";
     const thisWeekButton = document.createElement("button");
+    thisWeekButton.innerText = "This week";
     const completedButton = document.createElement("button");
+    completedButton.innerText = "Completed";
 
     const allTasksStats = document.createElement("div");
     const todayTasksStats = document.createElement("div");
@@ -32,7 +41,9 @@ import { allTasks } from "./allTasks";
     const taskspaceDiv = document.createElement("div");
     taskspaceDiv.classList.add("tasks-space");
 
-    sidePanelDiv.append(allTasksButton, todayTasksButton, thisWeekButton, completedButton, allTasksStats, todayTasksStats, thisWeekStats, completedStats);
+    sidePanelLeft.append(allTasksButton, todayTasksButton, thisWeekButton, completedButton);
+    sidePanelRight.append(allTasksStats, todayTasksStats, thisWeekStats, completedStats)
+    sidePanelDiv.append(sidePanelLeft, sidePanelRight);
     sidebarDiv.appendChild(sidePanelDiv);
     content.append(headerDiv, sidebarDiv, taskspaceDiv);
 })();

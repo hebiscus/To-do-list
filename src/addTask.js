@@ -1,4 +1,5 @@
 import { pubsub } from './pubsub.js';
+import format from 'date-fns/format';
 
 export const Task = class {
     constructor(name, description, dueDate, priority, status) {
@@ -40,13 +41,16 @@ export const AddTask = {
         nameInput.value = ''; //clear the form
         descriptionInput.value = '';
         dateInput.value = '';
-        priorityInput.value = '';
         
         const newTask = new Task(name, description, dueDate, priority, "");
 
         //tell subscribers that a task was added
         console.log(`TASK FORM: just taskAdded ${newTask.name}`);
         pubsub.publish('taskAdded', newTask);
+
+        //hid the modal
+        const modalContainer = document.querySelector(".modal");
+        modalContainer.style.display = "none";
     }
 }
 
@@ -100,6 +104,8 @@ function createModal() {
 
         const formDate = document.createElement("input");
         formDate.setAttribute("type", "date");
+        const fromattedTodaysDate = formatTodaysDate(new Date);
+        formDate.setAttribute("min", fromattedTodaysDate);
         formDate.classList.add("form-date");
         modalForm.appendChild(formDate);
 
@@ -128,4 +134,9 @@ function createModal() {
         modalForm.appendChild(formSubmit);
         formSubmit.addEventListener("click", AddTask.add)
     }
+}
+
+function formatTodaysDate(date) {
+    const formattedDate = format(date, 'yyyy-MM-dd');
+    return formattedDate;
 }

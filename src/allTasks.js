@@ -99,6 +99,6 @@ export const allTasks = {
 };
 
 function changeDateFormat(date) {
-  const formattedDate = format(new Date(date), 'd/M/yyyy');
+  const formattedDate = format(new Date(date), 'yyyy/MM/dd');
   return formattedDate;
 }
