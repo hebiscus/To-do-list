@@ -58,15 +58,24 @@ time, mark, audio, video {
     background-color: white;
     border-radius: 0% 20px 20px 0%;
     border-right: 5px solid;
-    border-top: 5px solid;;
+    border-top: 5px solid;
 }
 
 .addButton {
     align-self: center;
-    height: 2.7rem;
-    width: 7.7rem;
+    height: 3.5rem;
+    width: 8.7rem;
     margin: 1.2rem;
     margin-bottom: 0;
+    background-color: white;
+    border: 3px solid #ad70fe;
+    font-size: 1.8rem;
+    border-radius: 10px;
+    font-weight: 650;
+}
+
+.addButton:hover {
+  cursor: pointer;
 }
 
 .side-panel {

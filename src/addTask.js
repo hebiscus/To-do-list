@@ -23,12 +23,13 @@ export const AddTask = {
     render: container => {
         const addButton = document.createElement("button");
         addButton.classList.add("addButton");
+        addButton.setAttribute("type", "button");
         addButton.innerText = "Add new";
         addButton.addEventListener('click', function() {createModal()});
         container.prepend(addButton);
       },
     add: ev => {
-        ev.preventDefault();
+        // ev.preventDefault();
         let nameInput = document.querySelector('.form-name');
         let descriptionInput = document.querySelector('.form-description');
         let dateInput = document.querySelector('.form-date');
@@ -134,7 +135,7 @@ function createModal() {
         formSubmit.setAttribute("type", "submit");
         formSubmit.classList.add("form-submit");
         modalForm.appendChild(formSubmit);
-        formSubmit.addEventListener("click", AddTask.add)
+        formSubmit.addEventListener("click", AddTask.add);
     }
 }
 
