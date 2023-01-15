@@ -29,7 +29,6 @@ export const AddTask = {
         container.prepend(addButton);
       },
     add: ev => {
-        // ev.preventDefault();
         let nameInput = document.querySelector('.form-name');
         let descriptionInput = document.querySelector('.form-description');
         let dateInput = document.querySelector('.form-date');
@@ -39,6 +38,12 @@ export const AddTask = {
         let description = descriptionInput.value;
         let dueDate = dateInput.value;
         let priority = priorityInput.value;
+        
+        if (name == "" || dueDate == "") {
+                return;
+            }
+
+        ev.preventDefault();
         nameInput.value = ''; //clear the form
         descriptionInput.value = '';
         dateInput.value = '';

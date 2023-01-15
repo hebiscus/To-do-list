@@ -198,7 +198,8 @@ time, mark, audio, video {
 }
 
 .task-content {
-  display: flex;
+  display: grid;
+  grid-template-columns: 5% 60% 12% 12% 1fr 1fr;
   align-items: center;
   border: 3px solid;
   width: 95%;
