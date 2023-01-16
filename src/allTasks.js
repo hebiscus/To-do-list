@@ -72,6 +72,15 @@ export const allTasks = {
     const taskPriorityButton = document.createElement("button");
     taskPriorityButton.classList.add("taskpriority-button");
     taskPriorityButton.innerText = `${taskobject.priority}`;
+
+    if (taskPriorityButton.innerText == "low") {
+      taskPriorityButton.style.backgroundColor = "#7AFE70";
+    } else if (taskPriorityButton.innerText == "medium") {
+      taskPriorityButton.style.backgroundColor = "#FEAD70";
+    } else {
+      taskPriorityButton.style.backgroundColor = "#FE707A";
+    }
+
     taskContent.appendChild(taskPriorityButton);
     
     const taskdueDateText = document.createElement("p");
@@ -80,18 +89,14 @@ export const allTasks = {
     taskdueDateText.innerText = formattedDate;
     taskContent.appendChild(taskdueDateText);
 
-    const taskEdit = document.createElement("button");
+    const taskEdit = document.createElement("img");
     taskEdit.classList.add("task-edit");
+    taskEdit.setAttribute("src", "../src/info.svg");
     taskContent.appendChild(taskEdit);
 
-    // const infoSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    // infoSvg.setAttribute("d", "M21,7H3V4A1,1,0,0,1,4,3H20a1,1,0,0,1,1,1ZM3,20V9H21V20a1,1,0,0,1-1,1H4A1,1,0,0,1,3,20Zm3-6H18V12H6Zm0,4h6V16H6Z");
-    // infoSvg.style.stroke = "rgba(67,67,67,255)"
-    // taskEdit.appendChild(infoSvg);
-    d3.select(".task-edit").append("svg").attr("width", "100%").attr("height", "100%").attr("fill", "#000000").attr("viewbox", "0 0 24 24").append("path").attr("d", "M21,7H3V4A1,1,0,0,1,4,3H20a1,1,0,0,1,1,1ZM3,20V9H21V20a1,1,0,0,1-1,1H4A1,1,0,0,1,3,20Zm3-6H18V12H6Zm0,4h6V16H6Z").attr("style", 25).attr("r", 25).style("fill", "purple");
-
-    const taskDelete = document.createElement("button");
+    const taskDelete = document.createElement("img");
     taskDelete.classList.add("task-delete");
+    taskDelete.setAttribute("src", "../src/trash.svg");
     taskContent.appendChild(taskDelete);
 
   },

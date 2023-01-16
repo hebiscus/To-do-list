@@ -79,6 +79,7 @@ function createModal() {
 
         const closeModalButton = document.createElement("button");
         closeModalButton.classList.add("close-btn");
+        closeModalButton.innerText = "X";
         
         closeModalButton.onclick = function(){
             modalContainer.style.display = "none";
@@ -103,10 +104,10 @@ function createModal() {
         formName.setAttribute("required", "");
         modalForm.appendChild(formName);
 
-        const formDescription = document.createElement("input");
+        const formDescription = document.createElement("textarea");
         formDescription.classList.add("form-description");
-        formDescription.setAttribute("type", "text");
-        formDescription.setAttribute("placeholder", "Description");
+        formDescription.setAttribute("maxlength", "200");
+        formDescription.setAttribute("placeholder", "Description (max 200 char)");
         modalForm.appendChild(formDescription);
 
         const formDate = document.createElement("input");
@@ -122,17 +123,17 @@ function createModal() {
         modalForm.appendChild(formPriority);
 
         const lowPriority = document.createElement("option");
-        lowPriority.setAttribute("value", "low priority");
+        lowPriority.setAttribute("value", "low");
         lowPriority.innerText = "low priority";
         formPriority.appendChild(lowPriority);
 
         const mediumPriority = document.createElement("option");
-        mediumPriority.setAttribute("value", "medium priority");
+        mediumPriority.setAttribute("value", "medium");
         mediumPriority.innerText = "medium priority";
         formPriority.appendChild(mediumPriority);
 
         const highPriority = document.createElement("option");
-        highPriority.setAttribute("value", "high priority");
+        highPriority.setAttribute("value", "high");
         highPriority.innerText = "high priority";
         formPriority.appendChild(highPriority);
 
