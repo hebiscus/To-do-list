@@ -345,7 +345,8 @@ time, mark, audio, video {
     border: 5px solid;
     background-color: white;
     animation-name: animatetop;
-    animation-duration: 0.4s
+    animation-duration: 0.4s;
+    font-size: 2rem;
   }
 
   .priority-info-div {
@@ -355,7 +356,7 @@ time, mark, audio, video {
   .close-edit {
     background-color: white;
     width: 2rem;
-    float: right; 
+    align-self: end;
     color:#ad70fe;
     font-size: 1.8rem; 
     font-weight: bold;

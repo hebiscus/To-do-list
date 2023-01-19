@@ -112,10 +112,10 @@ export const allTasks = {
         const taskDateInfo = TaskModalContent.children[2];
         const taskPriorityInfo = document.querySelector(".priority-info")
 
-        taskNameInfo.innerText = taskobject.name;
-        taskDescriptionInfo.innerText = taskobject.description;
-        taskDateInfo.innerText = taskobject.dueDate;
-        taskPriorityInfo.innerText = taskobject.priority;
+        taskNameInfo.innerText = `Task: ${taskobject.name}`;
+        taskDescriptionInfo.innerText = `Description: ${taskobject.description}`;
+        taskDateInfo.innerText = `Due: ${taskobject.dueDate}`;
+        taskPriorityInfo.innerText = `Priority: ${taskobject.priority}`;
 
         TaskModalContainer.style.display = "block";
     } else {
@@ -128,13 +128,6 @@ export const allTasks = {
         TaskModalContent.classList.add("taskModal-content");
         TaskModalContainer.appendChild(TaskModalContent);
 
-        const closeEditButton = document.createElement("button");
-        closeEditButton.classList.add("close-edit");
-        closeEditButton.innerText = "X";
-        
-        closeEditButton.onclick = function(){
-          TaskModalContainer.style.display = "none";
-        }
         window.onclick = function(e){
         if(e.target == TaskModalContainer){
           TaskModalContainer.style.display = "none";
@@ -142,20 +135,20 @@ export const allTasks = {
           }
         
         const taskNameInfo = document.createElement("p");
-        taskNameInfo.innerText = taskobject.name;
+        taskNameInfo.innerText = `Task: ${taskobject.name}`;
         const taskDescriptionInfo = document.createElement("p");
-        taskDescriptionInfo.innerText = taskobject.description;
+        taskDescriptionInfo.innerText = `Description: ${taskobject.description}`;
         const taskDateInfo = document.createElement("p");
-        taskDateInfo.innerText = taskobject.dueDate;
+        taskDateInfo.innerText = `Due: ${taskobject.dueDate}`;
         const taskPriorityInfoDiv = document.createElement("div");
         taskPriorityInfoDiv.classList.add("priority-info-div");
         
         const taskPriorityInfoEl = document.createElement("div");
         taskPriorityInfoEl.classList.add("priority-info");
-        taskPriorityInfoEl.innerText = taskobject.priority;
+        taskPriorityInfoEl.innerText = `Priority: ${taskobject.priority}`;
         taskPriorityInfoDiv.appendChild(taskPriorityInfoEl);
   
-        TaskModalContent.append(taskNameInfo, taskDescriptionInfo, taskDateInfo, taskPriorityInfoDiv, closeEditButton);
+        TaskModalContent.append(taskNameInfo, taskDescriptionInfo, taskDateInfo, taskPriorityInfoDiv);
       }
     }
   // actorDeleted: ev => {

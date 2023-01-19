@@ -107,8 +107,8 @@ function createModal() {
 
         const formDescription = document.createElement("textarea");
         formDescription.classList.add("form-description");
-        formDescription.setAttribute("maxlength", "200");
-        formDescription.setAttribute("placeholder", "Description (max 200 char)");
+        formDescription.setAttribute("maxlength", "60");
+        formDescription.setAttribute("placeholder", "Description (max 60 char)");
         modalForm.appendChild(formDescription);
 
         const formDate = document.createElement("input");
