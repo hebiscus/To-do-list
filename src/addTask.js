@@ -100,6 +100,7 @@ function createModal() {
         const formName = document.createElement("input");
         formName.setAttribute("type", "text");
         formName.classList.add("form-name");
+        formName.setAttribute("maxlength", "33");
         formName.setAttribute("placeholder", "Task name");
         formName.setAttribute("required", "");
         modalForm.appendChild(formName);

@@ -1,7 +1,6 @@
 import { AddTask } from './addTask.js';
 import { pubsub } from './pubsub.js';
 import format from 'date-fns/format';
-import * as d3 from "d3";
 
 export const allTasks = {
   list: [],
@@ -92,6 +91,7 @@ export const allTasks = {
     const taskEdit = document.createElement("img");
     taskEdit.classList.add("task-edit");
     taskEdit.setAttribute("src", "../src/info.svg");
+    taskEdit.addEventListener("click", allTasks.editTaskModal);
     taskContent.appendChild(taskEdit);
 
     const taskDelete = document.createElement("img");
@@ -100,6 +100,37 @@ export const allTasks = {
     taskContent.appendChild(taskDelete);
 
   },
+  editTaskModal: function() {
+    const content = document.getElementById("content");
+
+    if(document.querySelector(".task-modal")){
+        console.log("Element exists");
+        const TaskModalContainer = document.querySelector(".task-modal");
+        TaskModalContainer.style.display = "block";
+    } else {
+        const TaskModalContainer = document.createElement("section");
+        TaskModalContainer.classList.add("task-modal");
+        content.appendChild(TaskModalContainer);
+        TaskModalContainer.style.display = "block";
+
+        const TaskModalContent = document.createElement("div");
+        TaskModalContent .classList.add("taskModal-content");
+        TaskModalContainer.appendChild(TaskModalContent);
+
+        const closeEditButton = document.createElement("button");
+        closeEditButton.classList.add("close-edit");
+        closeEditButton.innerText = "X";
+        
+        closeEditButton.onclick = function(){
+          TaskModalContainer.style.display = "none";
+        }
+        window.onclick = function(e){
+        if(e.target == TaskModalContainer){
+          TaskModalContainer.style.display = "none";
+            }
+          }
+      }
+    }
   // actorDeleted: ev => {
   //   let item = ev.target.closest('li');
   //   let name = item.textContent;
