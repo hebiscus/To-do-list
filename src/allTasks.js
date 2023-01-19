@@ -97,6 +97,7 @@ export const allTasks = {
     const taskDelete = document.createElement("img");
     taskDelete.classList.add("task-delete");
     taskDelete.setAttribute("src", "../src/trash.svg");
+    taskDelete.addEventListener("click", allTasks.taskDeleted);
     taskContent.appendChild(taskDelete);
 
   },
@@ -167,6 +168,16 @@ export const allTasks = {
         taskPriorityInfoDiv.appendChild(taskPriorityInfoEl);
         TaskModalContent.append(taskNameInfo, taskDescriptionInfo, taskDateInfo, taskPriorityInfoDiv);
       }
+    },
+    taskDeleted: ev => {
+      const taskContent = ev.target.closest('div');
+      const taskNameP = taskContent.children[1];
+      const taskName = taskNameP.innerText;
+      allTasks.list = allTasks.list.filter(nm => nm !== taskName);
+      taskContent.parentElement.removeChild(taskContent);
+      
+      console.log(`TASKS: taskDeleted the ${taskName}`);
+      pubsub.publish('taskDeleted', allTasks.list);
     }
   // actorDeleted: ev => {
   //   let item = ev.target.closest('li');
