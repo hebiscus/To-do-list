@@ -330,9 +330,12 @@ time, mark, audio, video {
     height: 100%; 
     background-color: rgba(0, 0, 0, 0.5);
   }
+  
   .taskModal-content {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
     position: relative; 
-    background-color: white;
     top: 20%;
     padding: 20px; 
     margin: auto; 
@@ -340,6 +343,7 @@ time, mark, audio, video {
     width: 35%;  
     border-radius: 20px;
     border: 5px solid;
+    background-color: white;
     animation-name: animatetop;
     animation-duration: 0.4s
   }

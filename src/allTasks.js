@@ -91,7 +91,7 @@ export const allTasks = {
     const taskEdit = document.createElement("img");
     taskEdit.classList.add("task-edit");
     taskEdit.setAttribute("src", "../src/info.svg");
-    taskEdit.addEventListener("click", allTasks.editTaskModal);
+    taskEdit.addEventListener("click", function() {allTasks.editTaskModal(taskobject)});
     taskContent.appendChild(taskEdit);
 
     const taskDelete = document.createElement("img");
@@ -100,12 +100,19 @@ export const allTasks = {
     taskContent.appendChild(taskDelete);
 
   },
-  editTaskModal: function() {
+  editTaskModal: function(taskobject) {
     const content = document.getElementById("content");
 
     if(document.querySelector(".task-modal")){
         console.log("Element exists");
         const TaskModalContainer = document.querySelector(".task-modal");
+        const taskNameInfo = TaskModalContainer.firstElementChild;
+        const taskDescriptionInfo = TaskModalContainer.children(2);
+        const taskDateInfo = TaskModalContainer.children(3);
+        const taskPriorityInfo = TaskModalContainer.children(4);
+
+        taskNameInfo.innerText = taskobject.name;
+
         TaskModalContainer.style.display = "block";
     } else {
         const TaskModalContainer = document.createElement("section");
@@ -114,7 +121,7 @@ export const allTasks = {
         TaskModalContainer.style.display = "block";
 
         const TaskModalContent = document.createElement("div");
-        TaskModalContent .classList.add("taskModal-content");
+        TaskModalContent.classList.add("taskModal-content");
         TaskModalContainer.appendChild(TaskModalContent);
 
         const closeEditButton = document.createElement("button");
@@ -129,6 +136,16 @@ export const allTasks = {
           TaskModalContainer.style.display = "none";
             }
           }
+        
+        const taskNameInfo = document.createElement("p");
+        taskNameInfo.innerText = taskobject.name;
+        const taskDescriptionInfo = document.createElement("p");
+        const taskDateInfo = document.createElement("p");
+        const taskPriorityInfo = document.createElement("div");
+        taskPriorityInfo.classList.add("priority-info");
+  
+  
+        TaskModalContent.append(taskNameInfo, taskDescriptionInfo, taskDateInfo, taskPriorityInfo, closeEditButton);
       }
     }
   // actorDeleted: ev => {
