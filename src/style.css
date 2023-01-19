@@ -353,6 +353,14 @@ time, mark, audio, video {
     display: flex;
   }
 
+  .priority-info {
+    border: 2px solid;
+    border-radius: 5px;
+    width: 23%;
+    text-align: center;
+    margin-left: 10px;
+  }
+
   .close-edit {
     background-color: white;
     width: 2rem;

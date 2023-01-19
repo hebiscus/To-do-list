@@ -115,7 +115,15 @@ export const allTasks = {
         taskNameInfo.innerText = `Task: ${taskobject.name}`;
         taskDescriptionInfo.innerText = `Description: ${taskobject.description}`;
         taskDateInfo.innerText = `Due: ${taskobject.dueDate}`;
-        taskPriorityInfo.innerText = `Priority: ${taskobject.priority}`;
+        taskPriorityInfo.innerText = taskobject.priority;
+
+        if (taskPriorityInfo.innerText == "low") {
+          taskPriorityInfo.style.backgroundColor = "#7AFE70";
+        } else if (taskPriorityInfo.innerText == "medium") {
+          taskPriorityInfo.style.backgroundColor = "#FEAD70";
+        } else {
+          taskPriorityInfo.style.backgroundColor = "#FE707A";
+        }
 
         TaskModalContainer.style.display = "block";
     } else {
@@ -129,10 +137,10 @@ export const allTasks = {
         TaskModalContainer.appendChild(TaskModalContent);
 
         window.onclick = function(e){
-        if(e.target == TaskModalContainer){
-          TaskModalContainer.style.display = "none";
-            }
-          }
+          if(e.target == TaskModalContainer){
+            TaskModalContainer.style.display = "none";
+              }
+        }
         
         const taskNameInfo = document.createElement("p");
         taskNameInfo.innerText = `Task: ${taskobject.name}`;
@@ -142,12 +150,21 @@ export const allTasks = {
         taskDateInfo.innerText = `Due: ${taskobject.dueDate}`;
         const taskPriorityInfoDiv = document.createElement("div");
         taskPriorityInfoDiv.classList.add("priority-info-div");
+        taskPriorityInfoDiv.innerText = `Priority:`
         
         const taskPriorityInfoEl = document.createElement("div");
         taskPriorityInfoEl.classList.add("priority-info");
-        taskPriorityInfoEl.innerText = `Priority: ${taskobject.priority}`;
+        taskPriorityInfoEl.innerText = taskobject.priority;
+
+        if (taskPriorityInfoEl.innerText == "low") {
+          taskPriorityInfoEl.style.backgroundColor = "#7AFE70";
+        } else if (taskPriorityInfoEl.innerText == "medium") {
+          taskPriorityInfoEl.style.backgroundColor = "#FEAD70";
+        } else {
+          taskPriorityInfoEl.style.backgroundColor = "#FE707A";
+        }
+
         taskPriorityInfoDiv.appendChild(taskPriorityInfoEl);
-  
         TaskModalContent.append(taskNameInfo, taskDescriptionInfo, taskDateInfo, taskPriorityInfoDiv);
       }
     }
