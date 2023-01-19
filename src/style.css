@@ -348,6 +348,10 @@ time, mark, audio, video {
     animation-duration: 0.4s
   }
 
+  .priority-info-div {
+    display: flex;
+  }
+
   .close-edit {
     background-color: white;
     width: 2rem;
