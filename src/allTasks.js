@@ -5,37 +5,9 @@ import format from 'date-fns/format';
 export const allTasks = {
   list: [],
   render: container => {
-    const topSection = document.createElement("div");
-    topSection.classList.add("top-section");
-    container.appendChild(topSection);
-    const sortByDiv = document.createElement("div");
-    sortByDiv.classList.add("sort-by");
-    topSection.appendChild(sortByDiv);
-    const sortText1 = document.createElement("p");
-    sortText1.innerText = "Sort by:";
-    const sortDate = document.createElement("button");
-    sortDate.classList.add("sort-date");
-    sortDate.innerText = "date added"
-    const sortText2 = document.createElement("p");
-    sortText2.innerText = "/";
-    const sortPriority = document.createElement("button");
-    sortPriority.classList.add("sort-priority");
-    sortPriority.innerText = "priority";
-    const priorityHeadline = document.createElement("h3");
-    priorityHeadline.classList.add("priority-headline");
-    priorityHeadline.innerText = "Priority"
-    const dueHeadline = document.createElement("h3");
-    dueHeadline.classList.add("due-headline")
-    dueHeadline.innerText = "Due";
-
-    sortByDiv.append(sortText1, sortDate, sortText2, sortPriority);
-    topSection.append(priorityHeadline, dueHeadline);
-    
     const taskDiv = document.createElement("div");
     taskDiv.classList.add("task-div")
     container.appendChild(taskDiv);
-    
-    // deleteButton.addEventListener('click', actors.actorDeleted);
 
     //tell the pubsub controller that we want to know about any taskAdded event
     console.log('allTasks: wants to know if a task is added');
@@ -112,10 +84,11 @@ export const allTasks = {
         const taskDescriptionInfo = TaskModalContent.children[1];
         const taskDateInfo = TaskModalContent.children[2];
         const taskPriorityInfo = document.querySelector(".priority-info")
+        const formattedDate = changeDateFormat(taskobject.dueDate);
 
         taskNameInfo.innerText = `Task: ${taskobject.name}`;
         taskDescriptionInfo.innerText = `Description: ${taskobject.description}`;
-        taskDateInfo.innerText = `Due: ${taskobject.dueDate}`;
+        taskDateInfo.innerText = `Due: ${formattedDate}`;
         taskPriorityInfo.innerText = taskobject.priority;
 
         if (taskPriorityInfo.innerText == "low") {
@@ -148,7 +121,8 @@ export const allTasks = {
         const taskDescriptionInfo = document.createElement("p");
         taskDescriptionInfo.innerText = `Description: ${taskobject.description}`;
         const taskDateInfo = document.createElement("p");
-        taskDateInfo.innerText = `Due: ${taskobject.dueDate}`;
+        const formattedDate = changeDateFormat(taskobject.dueDate);
+        taskDateInfo.innerText = `Due: ${formattedDate}`;
         const taskPriorityInfoDiv = document.createElement("div");
         taskPriorityInfoDiv.classList.add("priority-info-div");
         taskPriorityInfoDiv.innerText = `Priority:`
@@ -168,25 +142,17 @@ export const allTasks = {
         taskPriorityInfoDiv.appendChild(taskPriorityInfoEl);
         TaskModalContent.append(taskNameInfo, taskDescriptionInfo, taskDateInfo, taskPriorityInfoDiv);
       }
-    },
-    taskDeleted: ev => {
-      const taskContent = ev.target.closest('div');
-      const taskNameP = taskContent.children[1];
-      const taskName = taskNameP.innerText;
-      allTasks.list = allTasks.list.filter(nm => nm !== taskName);
-      taskContent.parentElement.removeChild(taskContent);
-      
-      console.log(`TASKS: taskDeleted the ${taskName}`);
-      pubsub.publish('taskDeleted', allTasks.list);
-    }
-  // actorDeleted: ev => {
-  //   let item = ev.target.closest('li');
-  //   let name = item.textContent;
-  //   actors.list = actors.list.filter(nm => nm !== name);
-  //   item.parentElement.removeChild(item);
-  //   console.log(`ACTORS: actorDeleted the ${name}`);
-  //   pubsub.publish('actorDeleted', actors.list);
-  // }
+  },
+  taskDeleted: ev => {
+    const taskContent = ev.target.closest('div');
+    const taskNameP = taskContent.children[1];
+    const taskName = taskNameP.innerText;
+    allTasks.list = allTasks.list.filter(nm => nm !== taskName);
+    taskContent.parentElement.removeChild(taskContent);
+    
+    console.log(`TASKS: taskDeleted the ${taskName}`);
+    pubsub.publish('taskDeleted', allTasks.list);
+  }
 };
 
 function changeDateFormat(date) {

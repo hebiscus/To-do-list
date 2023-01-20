@@ -82,6 +82,9 @@ time, mark, audio, video {
   height: 45%;
   display: flex;
   gap: 1.5rem;
+  border-top: 3px solid #707AFE;
+  border-bottom: 3px solid #707AFE;
+  margin-top: 18px;
 }
 
 .sidepanel-left {
@@ -140,6 +143,8 @@ time, mark, audio, video {
   grid-template-columns: 61% 12% 13% 1fr;
   grid-template-rows: 1fr 1fr;
   text-align: center;
+  border-bottom: 3px solid #707AFE;
+  margin-bottom: 10px;
 }
 
 .sort-by {
@@ -228,7 +233,7 @@ time, mark, audio, video {
   }
 
   .task-delete {
-    height: 80%;
+    height: 70%;
     width: 100%;
   }
 

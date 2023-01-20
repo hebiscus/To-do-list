@@ -25,6 +25,7 @@ import { allTasks } from "./allTasks";
     sidePanelRight.classList.add("sidepanel-right");
     
     const allTasksButton = document.createElement("button");
+    allTasksButton.addEventListener("click", function() {renderModules()});
     allTasksButton.innerText = "All tasks";
     const todayTasksButton = document.createElement("button");
     todayTasksButton.innerText = "Today";
@@ -48,12 +49,43 @@ import { allTasks } from "./allTasks";
     content.append(headerDiv, sidebarDiv, taskspaceDiv);
 })();
 
-(function renderModules() {
+(function renderFirstPage() {
     const sidebar = document.querySelector(".sidebar");
     const taskSpace = document.querySelector(".tasks-space");
 
+    const topSection = document.createElement("div");
+    topSection.classList.add("top-section");
+    const sortByDiv = document.createElement("div");
+    sortByDiv.classList.add("sort-by");
+    topSection.appendChild(sortByDiv);
+    const sortText1 = document.createElement("p");
+    sortText1.innerText = "Sort by:";
+    const sortDate = document.createElement("button");
+    sortDate.classList.add("sort-date");
+    sortDate.innerText = "date added"
+    const sortText2 = document.createElement("p");
+    sortText2.innerText = "/";
+    const sortPriority = document.createElement("button");
+    sortPriority.classList.add("sort-priority");
+    sortPriority.innerText = "priority";
+    const priorityHeadline = document.createElement("h3");
+    priorityHeadline.classList.add("priority-headline");
+    priorityHeadline.innerText = "Priority"
+    const dueHeadline = document.createElement("h3");
+    dueHeadline.classList.add("due-headline")
+    dueHeadline.innerText = "Due";
+
+    taskSpace.appendChild(topSection);
+    sortByDiv.append(sortText1, sortDate, sortText2, sortPriority);
+    topSection.append(priorityHeadline, dueHeadline);
+
     AddTask.render(sidebar);
     allTasks.render(taskSpace);
-
-
 })();
+
+// function renderModules() {
+//     const taskSpace = document.querySelector(".tasks-space");
+//     taskSpace.replaceChildren();
+
+//     allTasks.render(taskSpace);
+// }
