@@ -55,6 +55,8 @@ import { allTasks } from "./allTasks";
 
     const topSection = document.createElement("div");
     topSection.classList.add("top-section");
+    const taskDiv = document.createElement("div");
+    taskDiv.classList.add("task-div");
     const sortByDiv = document.createElement("div");
     sortByDiv.classList.add("sort-by");
     topSection.appendChild(sortByDiv);
@@ -75,7 +77,7 @@ import { allTasks } from "./allTasks";
     dueHeadline.classList.add("due-headline")
     dueHeadline.innerText = "Due";
 
-    taskSpace.appendChild(topSection);
+    taskSpace.append(topSection, taskDiv);
     sortByDiv.append(sortText1, sortDate, sortText2, sortPriority);
     topSection.append(priorityHeadline, dueHeadline);
 
@@ -83,9 +85,9 @@ import { allTasks } from "./allTasks";
     allTasks.render(taskSpace);
 })();
 
-// function renderModules() {
-//     const taskSpace = document.querySelector(".tasks-space");
-//     taskSpace.replaceChildren();
+function renderModules() {
+    const taskDiv = document.querySelector(".task-div");
+    taskDiv.replaceChildren();
 
-//     allTasks.render(taskSpace);
-// }
+    allTasks.render(taskDiv);
+}
