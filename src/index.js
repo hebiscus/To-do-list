@@ -1,6 +1,7 @@
 import css from "./style.css";
 import { AddTask } from "./addTask";
 import { allTasks } from "./allTasks";
+import { todayTasks } from "./todayTasks";
 
 (function renderTemplate() {
     const content = document.getElementById("content");
@@ -29,6 +30,7 @@ import { allTasks } from "./allTasks";
     allTasksButton.innerText = "All tasks";
     const todayTasksButton = document.createElement("button");
     todayTasksButton.innerText = "Today";
+    todayTasksButton.addEventListener("click", function() {renderModules()});
     const thisWeekButton = document.createElement("button");
     thisWeekButton.innerText = "This week";
     const completedButton = document.createElement("button");
@@ -89,5 +91,6 @@ function renderModules() {
     const taskDiv = document.querySelector(".task-div");
     taskDiv.replaceChildren();
 
-    allTasks.render(taskDiv);
+    // allTasks.render(taskDiv);
+    todayTasks.render(taskDiv);
 }
