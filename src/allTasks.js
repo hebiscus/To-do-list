@@ -6,6 +6,7 @@ export const allTasks = {
   list: [],
   render: container => {
     const taskDiv = document.querySelector(".task-div");
+    taskDiv.replaceChildren();
     
     allTasks.list.forEach(task => {
     //then the ui stuff for a new task list
@@ -196,7 +197,7 @@ export const allTasks = {
     const taskNameP = taskContent.children[1];
     const taskName = taskNameP.innerText;
     allTasks.list = allTasks.list.filter(function(nm) {
-      nm.name !== taskName;
+      return nm.name !== taskName;
     });
     taskContent.parentElement.removeChild(taskContent);
     
