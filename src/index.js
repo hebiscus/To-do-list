@@ -2,6 +2,7 @@ import css from "./style.css";
 import { AddTask } from "./addTask";
 import { allTasks } from "./allTasks";
 import { todayTasks } from "./todayTasks";
+import { weekTasks } from "./weekTasks";
 
 (function renderTemplate() {
     const content = document.getElementById("content");
@@ -33,6 +34,7 @@ import { todayTasks } from "./todayTasks";
     todayTasksButton.addEventListener("click", function() {renderModules("today")});
     const thisWeekButton = document.createElement("button");
     thisWeekButton.innerText = "This week";
+    thisWeekButton.addEventListener("click", function() {renderModules("week")});
     const completedButton = document.createElement("button");
     completedButton.innerText = "Completed";
 
@@ -95,6 +97,8 @@ function renderModules(moduleType) {
         allTasks.render(taskDiv);
     } else if (moduleType == "today") {
         todayTasks.render(taskDiv);
+    } else if (moduleType == "week") {
+        weekTasks.render(taskDiv);
     }
     
 }
