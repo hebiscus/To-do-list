@@ -12,7 +12,7 @@ export const Task = class {
 
     toggleStatus() {
         if (this.status == "completed") {
-            this.status = "notcompleted";
+            this.status = "uncomplete";
         } else {
             this.status = "completed";
         }
@@ -38,6 +38,7 @@ export const AddTask = {
         let description = descriptionInput.value;
         let dueDate = dateInput.value;
         let priority = priorityInput.value;
+        let status = "";
         
         if (name == "" || dueDate == "") {
                 return;
@@ -48,7 +49,7 @@ export const AddTask = {
         descriptionInput.value = '';
         dateInput.value = '';
         
-        const newTask = new Task(name, description, dueDate, priority, "");
+        const newTask = new Task(name, description, dueDate, priority, status);
 
         //tell subscribers that a task was added
         console.log(`TASK FORM: just taskAdded ${newTask.name}`);

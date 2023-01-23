@@ -17,6 +17,7 @@ export const allTasks = {
     const statusCheckbox = document.createElement("input");
     statusCheckbox.classList.add("status-checkbox");
     statusCheckbox.setAttribute("type", "checkbox");
+    statusCheckbox.addEventListener("click", function() {allTasks.taskChangeStatus(task)});
     taskContent.appendChild(statusCheckbox);
 
     const tasknameText = document.createElement("p");
@@ -203,6 +204,16 @@ export const allTasks = {
     
     console.log(`TASKS: taskDeleted the ${taskName}`);
     pubsub.publish('taskDeleted', allTasks.list);
+  },
+  taskChangeStatus: taskobject => {
+    const taskContent = ev.target.closest('div');
+    const statuscheckbox = taskContent.firstElementChild;
+
+    if (statuscheckbox.checked == true) {
+      taskobject.toggleStatus("completed");
+    } else if (statuscheckbox.checked == false) {
+      taskobject.toggleStatus("uncomplete");
+    }
   }
 };
 
