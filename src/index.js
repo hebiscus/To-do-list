@@ -26,11 +26,11 @@ import { todayTasks } from "./todayTasks";
     sidePanelRight.classList.add("sidepanel-right");
     
     const allTasksButton = document.createElement("button");
-    allTasksButton.addEventListener("click", function() {renderModules()});
+    allTasksButton.addEventListener("click", function() {renderModules("all")});
     allTasksButton.innerText = "All tasks";
     const todayTasksButton = document.createElement("button");
     todayTasksButton.innerText = "Today";
-    todayTasksButton.addEventListener("click", function() {renderModules()});
+    todayTasksButton.addEventListener("click", function() {renderModules("today")});
     const thisWeekButton = document.createElement("button");
     thisWeekButton.innerText = "This week";
     const completedButton = document.createElement("button");
@@ -87,10 +87,14 @@ import { todayTasks } from "./todayTasks";
     allTasks.render(taskSpace);
 })();
 
-function renderModules() {
+function renderModules(moduleType) {
     const taskDiv = document.querySelector(".task-div");
     taskDiv.replaceChildren();
 
-    // allTasks.render(taskDiv);
-    todayTasks.render(taskDiv);
+    if (moduleType == "all") {
+        allTasks.render(taskDiv);
+    } else if (moduleType == "today") {
+        todayTasks.render(taskDiv);
+    }
+    
 }
