@@ -3,6 +3,7 @@ import { AddTask } from "./addTask";
 import { allTasks } from "./allTasks";
 import { todayTasks } from "./todayTasks";
 import { weekTasks } from "./weekTasks";
+import { completedTasks } from "./completedTasks";
 
 (function renderTemplate() {
     const content = document.getElementById("content");
@@ -37,6 +38,7 @@ import { weekTasks } from "./weekTasks";
     thisWeekButton.addEventListener("click", function() {renderModules("week")});
     const completedButton = document.createElement("button");
     completedButton.innerText = "Completed";
+    completedButton.addEventListener("click", function() {renderModules("completed")});
 
     const allTasksStats = document.createElement("div");
     const todayTasksStats = document.createElement("div");
@@ -99,6 +101,8 @@ function renderModules(moduleType) {
         todayTasks.render(taskDiv);
     } else if (moduleType == "week") {
         weekTasks.render(taskDiv);
+    } else {
+        completedTasks.render(taskDiv);
     }
     
 }

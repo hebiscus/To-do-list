@@ -4,7 +4,6 @@ import { changeDateFormat } from "./allTasks";
 import format from 'date-fns/format';
 
 export const todayTasks = {
-    list: [],
     render: container => {
       const taskDiv = document.querySelector(".task-div");
       taskDiv.replaceChildren();

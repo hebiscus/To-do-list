@@ -6,7 +6,6 @@ import isThisWeek from 'date-fns/isThisWeek';
 import parseISO from 'date-fns/parseISO';
 
 export const weekTasks = {
-    list: [],
     render: container => {
       const taskDiv = document.querySelector(".task-div");
       taskDiv.replaceChildren();

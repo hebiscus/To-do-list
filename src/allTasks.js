@@ -1,6 +1,7 @@
 import { AddTask } from './addTask.js';
 import { pubsub } from './pubsub.js';
 import format from 'date-fns/format';
+import { completedTasks } from './completedTasks.js';
 
 export const allTasks = {
   list: [],
@@ -17,7 +18,7 @@ export const allTasks = {
     const statusCheckbox = document.createElement("input");
     statusCheckbox.classList.add("status-checkbox");
     statusCheckbox.setAttribute("type", "checkbox");
-    statusCheckbox.addEventListener("click", function() {allTasks.taskChangeStatus(task)});
+    statusCheckbox.addEventListener("click", allTasks.taskChangeStatus);
     taskContent.appendChild(statusCheckbox);
 
     const tasknameText = document.createElement("p");
@@ -74,54 +75,6 @@ export const allTasks = {
     pubsub.publish('tasksUpdated', allTasks.list);
 
     allTasks.render();
-
-    //then the ui stuff for a new task list
-    // const taskDiv= document.querySelector(".task-div");
-    // const taskContent = document.createElement("div");
-    // taskContent.classList.add("task-content");
-    // taskDiv.appendChild(taskContent);
-
-    // const statusCheckbox = document.createElement("input");
-    // statusCheckbox.classList.add("status-checkbox");
-    // statusCheckbox.setAttribute("type", "checkbox");
-    // taskContent.appendChild(statusCheckbox);
-
-    // const tasknameText = document.createElement("p");
-    // tasknameText.classList.add("taskname-text");
-    // tasknameText.innerText = `${taskobject.name}`;
-    // taskContent.appendChild(tasknameText);
-
-    // const taskPriorityButton = document.createElement("button");
-    // taskPriorityButton.classList.add("taskpriority-button");
-    // taskPriorityButton.innerText = `${taskobject.priority}`;
-
-    // if (taskPriorityButton.innerText == "low") {
-    //   taskPriorityButton.style.backgroundColor = "#7AFE70";
-    // } else if (taskPriorityButton.innerText == "medium") {
-    //   taskPriorityButton.style.backgroundColor = "#FEAD70";
-    // } else {
-    //   taskPriorityButton.style.backgroundColor = "#FE707A";
-    // }
-
-    // taskContent.appendChild(taskPriorityButton);
-    
-    // const taskdueDateText = document.createElement("p");
-    // taskdueDateText.classList.add("taskdate-text");
-    // const formattedDate = changeDateFormat(taskobject.dueDate);
-    // taskdueDateText.innerText = formattedDate;
-    // taskContent.appendChild(taskdueDateText);
-
-    // const taskEdit = document.createElement("img");
-    // taskEdit.classList.add("task-edit");
-    // taskEdit.setAttribute("src", "../src/info.svg");
-    // taskEdit.addEventListener("click", function() {allTasks.editTaskModal(taskobject)});
-    // taskContent.appendChild(taskEdit);
-
-    // const taskDelete = document.createElement("img");
-    // taskDelete.classList.add("task-delete");
-    // taskDelete.setAttribute("src", "../src/trash.svg");
-    // taskDelete.addEventListener("click", allTasks.taskDeleted);
-    // taskContent.appendChild(taskDelete);
   },
   editTaskModal: function(taskobject) {
     const content = document.getElementById("content");
@@ -205,14 +158,29 @@ export const allTasks = {
     console.log(`TASKS: taskDeleted the ${taskName}`);
     pubsub.publish('taskDeleted', allTasks.list);
   },
-  taskChangeStatus: taskobject => {
+  taskChangeStatus: ev => {
     const taskContent = ev.target.closest('div');
     const statuscheckbox = taskContent.firstElementChild;
+    const taskNameP = taskContent.children[1];
+    const taskName = taskNameP.innerText;
+    const taskObject = allTasks.list.find(function(nm) {
+      return nm.name == taskName;
+    });
+    const TaskObjectCompleted = completedTasks.list.find(function(nm) {
+      return nm.name == taskName;
+    });
+    
 
     if (statuscheckbox.checked == true) {
-      taskobject.toggleStatus("completed");
+      taskObject.status = "completed";
+      completedTasks.list.push(taskObject);
+      allTasks.taskDeleted(ev);
     } else if (statuscheckbox.checked == false) {
-      taskobject.toggleStatus("uncomplete");
+      TaskObjectCompleted.status = "uncompleted";
+      const taskIndex = completedTasks.list.indexOf(TaskObjectCompleted);
+      completedTasks.list.splice(taskIndex, 1);
+      completedTasks.render();
+      allTasks.list.push(TaskObjectCompleted);
     }
   }
 };
