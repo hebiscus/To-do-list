@@ -56,8 +56,17 @@ export const completedTasks = {
       const taskDelete = document.createElement("img");
       taskDelete.classList.add("task-delete");
       taskDelete.setAttribute("src", "../src/trash.svg");
-      taskDelete.addEventListener("click", allTasks.taskDeleted);
+      taskDelete.addEventListener("click", completedTasks.completedTaskDeleted);
       taskContent.appendChild(taskDelete);
       });
-    }
+    },
+    completedTaskDeleted: ev => {
+        const taskContent = ev.target.closest('div');
+        const taskNameP = taskContent.children[1];
+        const taskName = taskNameP.innerText;
+        completedTasks.list = completedTasks.list.filter(function(nm) {
+          return nm.name !== taskName;
+        });
+        taskContent.parentElement.removeChild(taskContent);
+      },
 }
