@@ -67,6 +67,7 @@ export const completedTasks = {
         completedTasks.list = completedTasks.list.filter(function(nm) {
           return nm.name !== taskName;
         });
+        localStorage.setItem("tasks-completed", JSON.stringify(completedTasks.list));
         taskContent.parentElement.removeChild(taskContent);
       },
 }

@@ -5,6 +5,13 @@ import { todayTasks } from "./todayTasks";
 import { weekTasks } from "./weekTasks";
 import { completedTasks } from "./completedTasks";
 
+// if (!localStorage.getItem('tasks')) {
+//     populateStorage();
+//   } else {
+//     setStyles();
+// }
+
+
 (function renderTemplate() {
     const content = document.getElementById("content");
 
@@ -88,7 +95,14 @@ import { completedTasks } from "./completedTasks";
     topSection.append(priorityHeadline, dueHeadline);
 
     AddTask.render(sidebar);
-    allTasks.render(taskSpace);
+    
+    if (localStorage.getItem('tasks')) {
+        const savedTasks= JSON.parse(localStorage.getItem("tasks"));
+        allTasks.list = savedTasks;
+        allTasks.render(taskSpace);
+    } else {
+        allTasks.render(taskSpace);
+    }
 })();
 
 function renderModules(moduleType) {
@@ -101,8 +115,34 @@ function renderModules(moduleType) {
         todayTasks.render(taskDiv);
     } else if (moduleType == "week") {
         weekTasks.render(taskDiv);
+    } else if (moduleType == "completed" && localStorage.getItem('tasks-completed')) {
+        const savedCompTasks = JSON.parse(localStorage.getItem("tasks-completed"));
+        completedTasks.list = savedCompTasks;
+        completedTasks.render(taskDiv);
     } else {
         completedTasks.render(taskDiv);
     }
-    
+}
+
+
+
+
+
+function setStyles() {
+    const savedTasks= JSON.parse(localStorage.getItem("tasks"));
+  
+    allTasks.list = savedTasks;
+    // document.getElementById('bgcolor').value = currentColor;
+    // document.getElementById('font').value = currentFont;
+    // document.getElementById('image').value = currentImage;
+  
+    // htmlElem.style.backgroundColor = `#${currentColor}`;
+    // pElem.style.fontFamily = currentFont;
+    // imgElem.setAttribute('src', currentImage);
+}
+
+function populateStorage() {
+    localStorage.setItem("tasks", JSON.stringify(allTasks.list));
+
+    setStyles();
 }

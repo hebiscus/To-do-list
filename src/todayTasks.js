@@ -24,6 +24,7 @@ export const todayTasks = {
       const statusCheckbox = document.createElement("input");
       statusCheckbox.classList.add("status-checkbox");
       statusCheckbox.setAttribute("type", "checkbox");
+      statusCheckbox.addEventListener("click", allTasks.taskChangeStatus);
       taskContent.appendChild(statusCheckbox);
   
       const tasknameText = document.createElement("p");
