@@ -54,13 +54,13 @@ export const todayTasks = {
   
       const taskEdit = document.createElement("img");
       taskEdit.classList.add("task-edit");
-      taskEdit.setAttribute("src", "../src/info.svg");
+      taskEdit.setAttribute("src", "info.svg");
       taskEdit.addEventListener("click", function() {allTasks.editTaskModal(task)});
       taskContent.appendChild(taskEdit);
   
       const taskDelete = document.createElement("img");
       taskDelete.classList.add("task-delete");
-      taskDelete.setAttribute("src", "../src/trash.svg");
+      taskDelete.setAttribute("src", "trash.svg");
       taskDelete.addEventListener("click", allTasks.taskDeleted);
       taskContent.appendChild(taskDelete);
       })
