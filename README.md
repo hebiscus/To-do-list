@@ -12,7 +12,6 @@ Tools used: JavaScript, HTML, CSS.
 # Live preview: 
 
 https://hebiscus.github.io/To-do-list/
-![Uploading image.png…]()
 
 
 # What could be improved:
