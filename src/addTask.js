@@ -34,7 +34,7 @@ export const AddTask = {
         let dateInput = document.querySelector('.form-date');
         let priorityInput = document.querySelector('.form-priority');
         
-        let name = nameInput.value;
+        let name = nameInput.value.trim();
         let description = descriptionInput.value;
         let dueDate = dateInput.value;
         let priority = priorityInput.value;
