@@ -124,25 +124,3 @@ function renderModules(moduleType) {
     }
 }
 
-
-
-
-
-function setStyles() {
-    const savedTasks= JSON.parse(localStorage.getItem("tasks"));
-  
-    allTasks.list = savedTasks;
-    // document.getElementById('bgcolor').value = currentColor;
-    // document.getElementById('font').value = currentFont;
-    // document.getElementById('image').value = currentImage;
-  
-    // htmlElem.style.backgroundColor = `#${currentColor}`;
-    // pElem.style.fontFamily = currentFont;
-    // imgElem.setAttribute('src', currentImage);
-}
-
-function populateStorage() {
-    localStorage.setItem("tasks", JSON.stringify(allTasks.list));
-
-    setStyles();
-}
