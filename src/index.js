@@ -5,12 +5,6 @@ import { todayTasks } from "./todayTasks";
 import { weekTasks } from "./weekTasks";
 import { completedTasks } from "./completedTasks";
 
-// if (!localStorage.getItem('tasks')) {
-//     populateStorage();
-//   } else {
-//     setStyles();
-// }
-
 
 (function renderTemplate() {
     const content = document.getElementById("content");
@@ -47,10 +41,15 @@ import { completedTasks } from "./completedTasks";
     completedButton.innerText = "Completed";
     completedButton.addEventListener("click", function() {renderModules("completed")});
 
-    const allTasksStats = document.createElement("div");
-    const todayTasksStats = document.createElement("div");
-    const thisWeekStats = document.createElement("div");
-    const completedStats = document.createElement("div");
+    const allTasksStats = document.createElement("img");
+    allTasksStats.setAttribute("src", "circle.svg");
+    allTasksStats.setAttribute("viewBox", "0 0 100 100");
+    const todayTasksStats = document.createElement("img");
+    todayTasksStats.setAttribute("src", "circle.svg");
+    const thisWeekStats = document.createElement("img");
+    thisWeekStats.setAttribute("src", "circle.svg");
+    const completedStats = document.createElement("img");
+    completedStats.setAttribute("src", "circle.svg");
 
     const taskspaceDiv = document.createElement("div");
     taskspaceDiv.classList.add("tasks-space");

@@ -81,14 +81,13 @@ time, mark, audio, video {
 .side-panel {
   height: 45%;
   display: flex;
-  gap: 1.5rem;
+  gap: 5%;
   border-top: 3px solid #707AFE;
   border-bottom: 3px solid #707AFE;
   margin-top: 18px;
 }
 
 .sidepanel-left {
-  width: 75%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -109,19 +108,15 @@ time, mark, audio, video {
 }
 
 .sidepanel-right {
-  width: 35%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
 }
 
-.sidepanel-right > div {
-  height: 1.6rem;
-  width: 43%;
-  border: 2px solid;
-  border-radius: 50%;
-  margin-top: 1rem;
-  background-color: #ad70fe;
+.sidepanel-right > img {
+  margin-top: 1.2em;
+    min-height: 5px;
+    max-height: 33px;
 }
 
 .tasks-space {
