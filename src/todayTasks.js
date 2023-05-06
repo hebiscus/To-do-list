@@ -37,11 +37,11 @@ export const todayTasks = {
       taskPriorityButton.innerText = `${task.priority}`;
   
       if (taskPriorityButton.innerText == "low") {
-        taskPriorityButton.style.backgroundColor = "#7AFE70";
+        taskPriorityButton.style.backgroundColor = "#BDFF94";
       } else if (taskPriorityButton.innerText == "medium") {
-        taskPriorityButton.style.backgroundColor = "#FEAD70";
+        taskPriorityButton.style.backgroundColor = "#FF9E4F";
       } else {
-        taskPriorityButton.style.backgroundColor = "#FE707A";
+        taskPriorityButton.style.backgroundColor = "#FF644F";
       }
   
       taskContent.appendChild(taskPriorityButton);

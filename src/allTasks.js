@@ -31,11 +31,11 @@ export const allTasks = {
     taskPriorityButton.innerText = `${task.priority}`;
 
     if (taskPriorityButton.innerText == "low") {
-      taskPriorityButton.style.backgroundColor = "#7AFE70";
+      taskPriorityButton.style.backgroundColor = "#BDFF94";
     } else if (taskPriorityButton.innerText == "medium") {
-      taskPriorityButton.style.backgroundColor = "#FEAD70";
+      taskPriorityButton.style.backgroundColor = "#FF9E4F";
     } else {
-      taskPriorityButton.style.backgroundColor = "#FE707A";
+      taskPriorityButton.style.backgroundColor = "#FF644F";
     }
 
     taskContent.appendChild(taskPriorityButton);
@@ -97,11 +97,11 @@ export const allTasks = {
         taskPriorityInfo.innerText = taskobject.priority;
 
         if (taskPriorityInfo.innerText == "low") {
-          taskPriorityInfo.style.backgroundColor = "#7AFE70";
+          taskPriorityInfo.style.backgroundColor = "#BDFF94";
         } else if (taskPriorityInfo.innerText == "medium") {
-          taskPriorityInfo.style.backgroundColor = "#FEAD70";
+          taskPriorityInfo.style.backgroundColor = "#FF9E4F";
         } else {
-          taskPriorityInfo.style.backgroundColor = "#FE707A";
+          taskPriorityInfo.style.backgroundColor = "#FF644F";
         }
 
         TaskModalContainer.style.display = "block";
@@ -136,12 +136,20 @@ export const allTasks = {
         taskPriorityInfoEl.classList.add("priority-info");
         taskPriorityInfoEl.innerText = taskobject.priority;
 
+        // if (taskPriorityInfoEl.innerText == "low") {
+        //   taskPriorityInfoEl.style.backgroundColor = "#7AFE70";
+        // } else if (taskPriorityInfoEl.innerText == "medium") {
+        //   taskPriorityInfoEl.style.backgroundColor = "#FEAD70";
+        // } else {
+        //   taskPriorityInfoEl.style.backgroundColor = "#FE707A";
+        // }
+
         if (taskPriorityInfoEl.innerText == "low") {
-          taskPriorityInfoEl.style.backgroundColor = "#7AFE70";
+          taskPriorityInfoEl.style.backgroundColor = "#BDFF94";
         } else if (taskPriorityInfoEl.innerText == "medium") {
-          taskPriorityInfoEl.style.backgroundColor = "#FEAD70";
+          taskPriorityInfoEl.style.backgroundColor = "#FF9E4F";
         } else {
-          taskPriorityInfoEl.style.backgroundColor = "#FE707A";
+          taskPriorityInfoEl.style.backgroundColor = "#FF644F";
         }
 
         taskPriorityInfoDiv.appendChild(taskPriorityInfoEl);
