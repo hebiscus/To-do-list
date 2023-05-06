@@ -256,8 +256,13 @@ time, mark, audio, video {
     border-radius: 20px;
     border: 5px solid;
     animation-name: animatetop;
-    animation-duration: 0.4s
+    animation-duration: 0.5s
   }
+
+@keyframes animatetop {
+  from {top:-50%; opacity:0}
+  to {top:20%; opacity:1}
+}
 
 .modalform {
   height: 85%;
@@ -269,7 +274,7 @@ time, mark, audio, video {
 
 .modalform > * {
   border: 3px solid;
-  box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 1);
+  background-color: #FEFBF6;
 }
 
 .form-name {
@@ -316,14 +321,8 @@ time, mark, audio, video {
   .close-btn:hover {
     color: darkgray;
   }
-  @-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0} 
-    to {top:0; opacity:1}
-  }
-  @keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
-  }
+
+  
 
   .task-modal {
     display: none;
