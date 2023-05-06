@@ -215,6 +215,10 @@ time, mark, audio, video {
     accent-color: #efa690;
   }
 
+  .status-checkbox:hover {
+    cursor: pointer;
+  }
+
   .taskname-text-completed {
     text-decoration: line-through;
   }
@@ -227,6 +231,10 @@ time, mark, audio, video {
     margin: 0;
   }
 
+  .taskdate-text {
+    text-align: center;
+  }
+
   .task-edit {
     width: 100%;
   }
@@ -234,6 +242,11 @@ time, mark, audio, video {
   .task-delete {
     height: 70%;
     width: 100%;
+  }
+
+  .task-edit:hover, .task-delete:hover {
+    cursor: pointer;
+    transform: scale(1.04);
   }
 
   .modal {
