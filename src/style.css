@@ -26,7 +26,7 @@ time, mark, audio, video {
     height: 100vh;
     width: 100vw;
     display: grid;
-    grid-template-columns: 9% 5% 70% 6% 1fr;
+    grid-template-columns: minmax(150px, 200px) minmax(10px, 50px) minmax(250px, 800px) minmax(250px, 800px) minmax(20px, 35px);
     grid-template-rows: 11% 1% 75% 1fr;
     background-color: #E1E7F1;
     gap: 2rem
@@ -118,7 +118,7 @@ time, mark, audio, video {
 }
 
 .tasks-space {
-    grid-column: 3 / 4;
+    grid-column: 3 / 5;
     grid-row: 3 / 4;
     display: flex;
     flex-direction: column;
@@ -211,7 +211,7 @@ time, mark, audio, video {
     height: 1.7rem;
     width: 1.5rem;
     justify-self: center;
-    accent-color: #ad70fe;
+    accent-color: #efa690;
   }
 
   .taskname-text-completed {
