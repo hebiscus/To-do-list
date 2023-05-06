@@ -47,8 +47,7 @@ export const AddTask = {
         ev.preventDefault();
         nameInput.value = ''; //clear the form
         descriptionInput.value = '';
-        dateInput.value = '';
-        
+
         const newTask = new Task(name, description, dueDate, priority, status);
 
         //tell subscribers that a task was added
@@ -118,6 +117,7 @@ function createModal() {
         const fromattedTodaysDate = formatTodaysDate(new Date);
         formDate.setAttribute("min", fromattedTodaysDate);
         formDate.setAttribute("required", "");
+        formDate.value = formatTodaysDate(new Date());
         modalForm.appendChild(formDate);
 
         const formPriority = document.createElement("select");
