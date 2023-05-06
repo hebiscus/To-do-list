@@ -74,6 +74,7 @@ time, mark, audio, video {
 
 .addButton:hover {
   cursor: pointer;
+  transform: scale(1.05);
 }
 
 .side-panel {
@@ -227,7 +228,6 @@ time, mark, audio, video {
   }
 
   .task-edit {
-    height: 85%;
     width: 100%;
   }
 
@@ -306,7 +306,12 @@ time, mark, audio, video {
   grid-column: 5;
   grid-row: 6;
   border-radius: 5px;
-  background-color: #FEFBF6;
+  background-color: #FBC4B3;
+}
+
+.form-submit:hover {
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
   .close-btn {
