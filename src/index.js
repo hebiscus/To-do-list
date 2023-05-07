@@ -77,12 +77,14 @@ import { completedTasks } from "./completedTasks";
     sortText1.innerText = "Sort by:";
     const sortDate = document.createElement("button");
     sortDate.classList.add("sort-date");
-    sortDate.innerText = "date added"
+    sortDate.innerText = "date";
+    sortDate.addEventListener("click", () => {sortByDate()})
     const sortText2 = document.createElement("p");
     sortText2.innerText = "/";
     const sortPriority = document.createElement("button");
     sortPriority.classList.add("sort-priority");
     sortPriority.innerText = "priority";
+    sortPriority.addEventListener("click", () => {})
     const priorityHeadline = document.createElement("h3");
     priorityHeadline.classList.add("priority-headline");
     priorityHeadline.innerText = "Priority"
@@ -134,5 +136,25 @@ function renderModules(moduleType) {
         sidebarTabDiv.children[3].classList.toggle("highlight-tab");
         completedTasks.render(taskDiv);
     }
+};
+
+function sortByPriority() {
+
 }
 
+function sortByDate() {
+    const sidebarTabDiv = document.querySelector(".sidepanel-left");
+    const currentHighlight = document.querySelector(".highlight-tab");
+    const taskDiv = document.querySelector(".task-div");
+    
+    if (currentHighlight == sidebarTabDiv.children[0]) {
+        allTasks.list.sort((a, b) => {
+            let da = new Date(a.dueDate),
+            db = new Date(b.dueDate);
+            return da - db
+        })
+        console.log(allTasks.list)
+        taskDiv.replaceChildren();
+        allTasks.render(taskDiv)
+    }
+}
