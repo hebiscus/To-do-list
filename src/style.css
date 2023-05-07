@@ -58,6 +58,10 @@ time, mark, audio, video {
     box-shadow: 3px 0px 0px 0px rgba(0, 0, 0, 1);
 }
 
+.highlight-tab {
+    text-shadow: 2px 2px 13px #ff644f;
+}
+
 .addButton {
     align-self: center;
     height: 3.5rem;

@@ -31,6 +31,7 @@ import { completedTasks } from "./completedTasks";
     const allTasksButton = document.createElement("button");
     allTasksButton.addEventListener("click", function() {renderModules("all")});
     allTasksButton.innerText = "All tasks";
+    allTasksButton.classList.toggle("highlight-tab")
     const todayTasksButton = document.createElement("button");
     todayTasksButton.innerText = "Today";
     todayTasksButton.addEventListener("click", function() {renderModules("today")});
@@ -105,20 +106,32 @@ import { completedTasks } from "./completedTasks";
 })();
 
 function renderModules(moduleType) {
+    const sidebarTabDiv = document.querySelector(".sidepanel-left");
+    const currentHighlight = document.querySelector(".highlight-tab");
     const taskDiv = document.querySelector(".task-div");
     taskDiv.replaceChildren();
 
     if (moduleType == "all") {
+        currentHighlight.classList.toggle("highlight-tab");
+        sidebarTabDiv.firstElementChild.classList.toggle("highlight-tab");
         allTasks.render(taskDiv);
     } else if (moduleType == "today") {
+        currentHighlight.classList.toggle("highlight-tab");
+        sidebarTabDiv.children[1].classList.toggle("highlight-tab");
         todayTasks.render(taskDiv);
     } else if (moduleType == "week") {
+        currentHighlight.classList.toggle("highlight-tab");
+        sidebarTabDiv.children[2].classList.toggle("highlight-tab");
         weekTasks.render(taskDiv);
     } else if (moduleType == "completed" && localStorage.getItem('tasks-completed')) {
+        currentHighlight.classList.toggle("highlight-tab");
+        sidebarTabDiv.children[3].classList.toggle("highlight-tab");
         const savedCompTasks = JSON.parse(localStorage.getItem("tasks-completed"));
         completedTasks.list = savedCompTasks;
         completedTasks.render(taskDiv);
     } else {
+        currentHighlight.classList.toggle("highlight-tab");
+        sidebarTabDiv.children[3].classList.toggle("highlight-tab");
         completedTasks.render(taskDiv);
     }
 }

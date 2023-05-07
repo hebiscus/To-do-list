@@ -5,7 +5,11 @@ import { completedTasks } from './completedTasks.js';
 
 export const allTasks = {
   list: [],
-  render: container => {
+  render: (container) => {
+    // const sidepanel = document.querySelector(".sidepanel-left");
+    // const tabName = sidepanel.firstElementChild;
+    // tabName.classList.toggle("highlight-tab");
+
     const taskDiv = document.querySelector(".task-div");
     taskDiv.replaceChildren();
     
@@ -136,14 +140,6 @@ export const allTasks = {
         taskPriorityInfoEl.classList.add("priority-info");
         taskPriorityInfoEl.innerText = taskobject.priority;
 
-        // if (taskPriorityInfoEl.innerText == "low") {
-        //   taskPriorityInfoEl.style.backgroundColor = "#7AFE70";
-        // } else if (taskPriorityInfoEl.innerText == "medium") {
-        //   taskPriorityInfoEl.style.backgroundColor = "#FEAD70";
-        // } else {
-        //   taskPriorityInfoEl.style.backgroundColor = "#FE707A";
-        // }
-
         if (taskPriorityInfoEl.innerText == "low") {
           taskPriorityInfoEl.style.backgroundColor = "#BDFF94";
         } else if (taskPriorityInfoEl.innerText == "medium") {
@@ -181,7 +177,6 @@ export const allTasks = {
     const TaskObjectCompleted = completedTasks.list.find(function(nm) {
       return nm.name == taskName;
     });
-    
 
     if (statuscheckbox.checked == true) {
       taskObject.status = "completed";

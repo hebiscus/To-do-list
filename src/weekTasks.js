@@ -11,7 +11,6 @@ export const weekTasks = {
       taskDiv.replaceChildren();
 
       const weekTasksList = allTasks.list.filter(function(task) {
-        // const todayDate = DateFormat(new Date());
         const parseDate = parseISO(task.dueDate);
         return isThisWeek(parseDate);
       });
