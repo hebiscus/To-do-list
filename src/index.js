@@ -83,7 +83,7 @@ import { completedTasks } from "./completedTasks";
     const sortPriority = document.createElement("button");
     sortPriority.classList.add("sort-priority");
     sortPriority.innerText = "priority";
-    sortPriority.addEventListener("click", () => {})
+    sortPriority.addEventListener("click", () => {sortByPriority()})
     const priorityHeadline = document.createElement("h3");
     priorityHeadline.classList.add("priority-headline");
     priorityHeadline.innerText = "Priority"
@@ -138,7 +138,37 @@ function renderModules(moduleType) {
 };
 
 function sortByPriority() {
+    const priorityOrder = {low: 0, medium: 1, high: 2};
 
+    const sidebarTabDiv = document.querySelector(".sidepanel-left");
+    const currentHighlight = document.querySelector(".highlight-tab");
+    const taskDiv = document.querySelector(".task-div");
+    
+    if (currentHighlight == sidebarTabDiv.children[0]) {
+        allTasks.list.sort((a, b) => {
+            return priorityOrder[a.priority] - priorityOrder[b.priority];
+        })
+        localStorage.setItem("tasks", JSON.stringify(allTasks.list));
+        allTasks.render(taskDiv);
+    } else if (currentHighlight == sidebarTabDiv.children[1]) {
+        allTasks.list.sort((a, b) => {
+            return priorityOrder[a.priority] - priorityOrder[b.priority];
+        });
+        localStorage.setItem("tasks", JSON.stringify(allTasks.list));
+        todayTasks.render(taskDiv);
+    } else if (currentHighlight == sidebarTabDiv.children[2]) {
+        allTasks.list.sort((a, b) => {
+            return priorityOrder[a.priority] - priorityOrder[b.priority];
+        });
+        localStorage.setItem("tasks", JSON.stringify(allTasks.list));
+        weekTasks.render(taskDiv);
+    } else {
+        completedTasks.list.sort((a, b) => {
+            return priorityOrder[a.priority] - priorityOrder[b.priority];
+        });
+        localStorage.setItem("tasks-completed", JSON.stringify(completedTasks.list));
+        completedTasks.render(taskDiv);
+    }
 }
 
 function sortByDate() {
