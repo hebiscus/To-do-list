@@ -5,7 +5,6 @@ import { todayTasks } from "./todayTasks";
 import { weekTasks } from "./weekTasks";
 import { completedTasks } from "./completedTasks";
 
-
 (function renderTemplate() {
     const content = document.getElementById("content");
 
@@ -153,7 +152,13 @@ function sortByDate() {
             db = new Date(b.dueDate);
             return da - db
         })
-        console.log(allTasks.list)
+        // const sortedList = allTasks.list.sort((a, b) => {
+        //     let da = new Date(a.dueDate);
+        //     let db = new Date(b.dueDate);
+        //     return da - db
+        // })
+        console.log(allTasks.list);
+        // console.log(sortedList);
         taskDiv.replaceChildren();
         allTasks.render(taskDiv)
     }
