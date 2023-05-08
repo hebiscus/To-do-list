@@ -12,8 +12,6 @@ export const todayTasks = {
         const todayDate = DateFormat(new Date());
         return task.dueDate == todayDate;
       });
-
-      console.log(todayTasksList);
       
       todayTasksList.forEach(task => {
       //then the ui stuff for a new task list
