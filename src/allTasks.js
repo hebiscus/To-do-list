@@ -6,10 +6,6 @@ import { completedTasks } from './completedTasks.js';
 export const allTasks = {
   list: [],
   render: (container) => {
-    // const sidepanel = document.querySelector(".sidepanel-left");
-    // const tabName = sidepanel.firstElementChild;
-    // tabName.classList.toggle("highlight-tab");
-
     const taskDiv = document.querySelector(".task-div");
     taskDiv.replaceChildren();
     
@@ -64,12 +60,10 @@ export const allTasks = {
     })
 
     //tell the pubsub controller that we want to know about any taskAdded event
-    console.log('allTasks: wants to know if a task is added');
     pubsub.subscribe('taskAdded', allTasks.taskAdded);
   },
   taskAdded: taskobject => {
     //taskAdded event was published
-    console.log(`TASKS: I hear that ${taskobject.name} was added`);
     let list = new Set(allTasks.list);
     list.add(taskobject);
     allTasks.list = Array.from(list).sort();
@@ -77,7 +71,6 @@ export const allTasks = {
     localStorage.setItem("tasks", JSON.stringify(allTasks.list));
 
     //tell everyone that a task has been added to the list
-    console.log('allTasks: tasksUpdated the list');
     pubsub.publish('tasksUpdated', allTasks.list);
 
     allTasks.render();
@@ -86,7 +79,6 @@ export const allTasks = {
     const content = document.getElementById("content");
 
     if(document.querySelector(".task-modal")){
-        console.log("Element exists");
         const TaskModalContainer = document.querySelector(".task-modal");
         const TaskModalContent = document.querySelector(".taskModal-content");
         const taskNameInfo = TaskModalContent.firstElementChild;
@@ -162,8 +154,6 @@ export const allTasks = {
     localStorage.setItem("tasks", JSON.stringify(allTasks.list));
     taskContent.parentElement.removeChild(taskContent);
 
-    
-    console.log(`TASKS: taskDeleted the ${taskName}`);
     pubsub.publish('taskDeleted', allTasks.list);
   },
   taskChangeStatus: ev => {

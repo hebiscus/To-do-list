@@ -66,7 +66,6 @@ export const weekTasks = {
       })
   
       //tell the pubsub controller that we want to know about any taskAdded event
-      console.log('allTasks: wants to know if a task is added');
       pubsub.subscribe('taskAdded', allTasks.taskAdded);
     }
 }

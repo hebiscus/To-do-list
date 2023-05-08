@@ -51,7 +51,6 @@ export const AddTask = {
         const newTask = new Task(name, description, dueDate, priority, status);
 
         //tell subscribers that a task was added
-        console.log(`TASK FORM: just taskAdded ${newTask.name}`);
         pubsub.publish('taskAdded', newTask);
 
         //hid the modal
@@ -64,7 +63,6 @@ function createModal() {
     const content = document.getElementById("content");
 
     if(document.querySelector(".modal")){
-        console.log("Element exists");
         const modalContainer = document.querySelector(".modal");
         modalContainer.style.display = "block";
     } else {
