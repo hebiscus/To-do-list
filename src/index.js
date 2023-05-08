@@ -152,6 +152,7 @@ function sortByDate() {
             db = new Date(b.dueDate);
             return da - db
         })
+        localStorage.setItem("tasks", JSON.stringify(allTasks.list));
         allTasks.render(taskDiv);
     } else if (currentHighlight == sidebarTabDiv.children[1]) {
         allTasks.list.sort((a, b) => {
@@ -159,6 +160,7 @@ function sortByDate() {
             db = new Date(b.dueDate);
             return da - db
         });
+        localStorage.setItem("tasks", JSON.stringify(allTasks.list));
         todayTasks.render(taskDiv);
     } else if (currentHighlight == sidebarTabDiv.children[2]) {
         allTasks.list.sort((a, b) => {
@@ -166,6 +168,7 @@ function sortByDate() {
             db = new Date(b.dueDate);
             return da - db
         });
+        localStorage.setItem("tasks", JSON.stringify(allTasks.list));
         weekTasks.render(taskDiv);
     } else {
         completedTasks.list.sort((a, b) => {
@@ -173,6 +176,7 @@ function sortByDate() {
             db = new Date(b.dueDate);
             return da - db
         });
+        localStorage.setItem("tasks-completed", JSON.stringify(completedTasks.list));
         completedTasks.render(taskDiv);
     }
 }
