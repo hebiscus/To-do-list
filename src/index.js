@@ -152,14 +152,27 @@ function sortByDate() {
             db = new Date(b.dueDate);
             return da - db
         })
-        // const sortedList = allTasks.list.sort((a, b) => {
-        //     let da = new Date(a.dueDate);
-        //     let db = new Date(b.dueDate);
-        //     return da - db
-        // })
-        console.log(allTasks.list);
-        // console.log(sortedList);
-        taskDiv.replaceChildren();
-        allTasks.render(taskDiv)
+        allTasks.render(taskDiv);
+    } else if (currentHighlight == sidebarTabDiv.children[1]) {
+        allTasks.list.sort((a, b) => {
+            let da = new Date(a.dueDate),
+            db = new Date(b.dueDate);
+            return da - db
+        });
+        todayTasks.render(taskDiv);
+    } else if (currentHighlight == sidebarTabDiv.children[2]) {
+        allTasks.list.sort((a, b) => {
+            let da = new Date(a.dueDate),
+            db = new Date(b.dueDate);
+            return da - db
+        });
+        weekTasks.render(taskDiv);
+    } else {
+        completedTasks.list.sort((a, b) => {
+            let da = new Date(a.dueDate),
+            db = new Date(b.dueDate);
+            return da - db
+        });
+        completedTasks.render(taskDiv);
     }
 }
