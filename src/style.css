@@ -24,7 +24,6 @@ time, mark, audio, video {
 
 #content {
     height: 100vh;
-    width: 100vw;
     display: grid;
     grid-template-columns: minmax(150px, 200px) minmax(10px, 50px) minmax(250px, 800px) minmax(250px, 800px) minmax(20px, 35px);
     grid-template-rows: 11% 1% 75% 1fr;
@@ -79,6 +78,7 @@ time, mark, audio, video {
 .addButton:hover {
   cursor: pointer;
   transform: scale(1.05);
+  box-shadow: 2px 2px 0px 0px #ff644f;
 }
 
 .side-panel {
@@ -135,8 +135,6 @@ time, mark, audio, video {
 }
 
 .top-section {
-  width: 100%;
-  height: 20%;
   display: grid;
   grid-template-columns: 61% 12% 13% 1fr;
   grid-template-rows: 1fr 1fr;
@@ -165,6 +163,10 @@ time, mark, audio, video {
 .sort-by > button {
   border: none;
   background-color: inherit;
+}
+
+.sort-date:hover, .sort-priority:hover {
+  transform: scale(1.1);
 }
 
 .sort-date {
@@ -282,7 +284,7 @@ time, mark, audio, video {
 }
 
 .modalform {
-  height: 85%;
+  height: 88%;
   display: grid;
   grid-template-columns: 35% 10% 1fr 20% 20% 5%;
   grid-template-rows: repeat(6, 1fr);
@@ -331,18 +333,19 @@ time, mark, audio, video {
   transform: scale(1.05);
 }
 
-  .close-btn {
-    background-color: #FEFBF6;
-    width: 2rem;
-    float: right; 
-    color:#ad70fe;
-    font-size: 1.8rem; 
-    font-weight: bold;
-    border: none;
-  }
-  .close-btn:hover {
-    color: darkgray;
-  }
+.close-btn {
+  background-color: #FEFBF6;
+  width: 2rem;
+  float: right; 
+  color:#FBC4B3;
+  font-size: 1.8rem; 
+  font-weight: bold;
+  border: none;
+}
+.close-btn:hover {
+  color: darkgray;
+  cursor: pointer;
+}
 
   
 
