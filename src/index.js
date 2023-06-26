@@ -4,8 +4,68 @@ import { allTasks } from "./allTasks";
 import { todayTasks } from "./todayTasks";
 import { weekTasks } from "./weekTasks";
 import { completedTasks } from "./completedTasks";
+import { initializeApp } from 'firebase/app'
+import {
+  getFirestore, collection, addDoc, getDocs, onSnapshot
+} from 'firebase/firestore'
+import { getAuth } from 'firebase/auth'
 
-(function renderTemplate() {
+const firebaseConfig = {
+    apiKey: "AIzaSyCrzGh1-ICTqQXDr_68Bwlll8nAddBOF0U",
+    authDomain: "fir-test-99c46.firebaseapp.com",
+    projectId: "fir-test-99c46",
+    storageBucket: "fir-test-99c46.appspot.com",
+    messagingSenderId: "698997768246",
+    appId: "1:698997768246:web:ecc43db04b76ef0c0d1897"
+}
+
+// initalise firebase
+const app = initializeApp(firebaseConfig);
+
+// initialise services
+export const db = getFirestore(app);
+const auth = getAuth();
+
+// async function createTasksData() {
+//     try {
+//         const docRef = await addDoc(collection(db, "users"), {
+//           first: "Ada",
+//           last: "Lovelace",
+//           born: 1815
+//         });
+//         console.log("Document written with ID: ", docRef.id);
+//       } catch (e) {
+//         console.error("Error adding document: ", e);
+//       }
+// }
+// createTasksData();
+
+// collection ref
+export const colRef = collection(db, 'tasks');
+
+// get collection data
+// getDocs(colRef)
+//   .then(snapshot => {
+//     // console.log(snapshot.docs)
+//     let tasks = []
+//     snapshot.docs.forEach(doc => {
+//       tasks.push({ ...doc.data(), id: doc.id })
+//     })
+//     console.log(tasks)
+//   })
+//   .catch(err => {
+//     console.log(err.message)
+//   })
+
+onSnapshot(colRef, (snapshot) => {
+    let tasks = []
+    snapshot.docs.forEach(doc => {
+      tasks.push({ ...doc.data(), id: doc.id })
+    })
+    console.log(tasks)
+})
+
+function renderTemplate() {
     const content = document.getElementById("content");
 
     const headerDiv = document.createElement("div");
@@ -59,9 +119,9 @@ import { completedTasks } from "./completedTasks";
     sidePanelDiv.append(sidePanelLeft, sidePanelRight);
     sidebarDiv.appendChild(sidePanelDiv);
     content.append(headerDiv, sidebarDiv, taskspaceDiv);
-})();
+}
 
-(function renderFirstPage() {
+function renderFirstPage() {
     const sidebar = document.querySelector(".sidebar");
     const taskSpace = document.querySelector(".tasks-space");
 
@@ -104,7 +164,7 @@ import { completedTasks } from "./completedTasks";
     } else {
         allTasks.render(taskSpace);
     }
-})();
+};
 
 function renderModules(moduleType) {
     const sidebarTabDiv = document.querySelector(".sidepanel-left");
@@ -210,3 +270,6 @@ function sortByDate() {
         completedTasks.render(taskDiv);
     }
 }
+
+renderTemplate();
+renderFirstPage();

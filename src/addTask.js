@@ -1,13 +1,16 @@
 import { pubsub } from './pubsub.js';
 import format from 'date-fns/format';
+import { addDoc, setDoc, doc } from 'firebase/firestore';
+import { colRef, db } from './index.js';
 
 export const Task = class {
-    constructor(name, description, dueDate, priority, status) {
+    constructor(name, description, dueDate, priority, status, id) {
         this.name = name;
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
-        this.status = status;        
+        this.status = status;
+        this.id = id;       
     }
 
     toggleStatus() {
@@ -39,16 +42,43 @@ export const AddTask = {
         let dueDate = dateInput.value;
         let priority = priorityInput.value;
         let status = "";
+        let randomID = (Math.random() + 1).toString(36).substring(7);
         
         if (name == "" || dueDate == "") {
                 return;
             }
 
+        // addDoc(colRef, {
+        //     name: nameInput.value.trim(),
+        //     description: descriptionInput.value,
+        //     dueDate: dateInput.value,
+        //     priority: priorityInput.value,
+        //     status: '',
+        //     randomId: randomID
+        // })
+        // .then((docRef) => {
+        //     console.log(docRef.id)
+        //     nameInput.value = ''; //clear the form
+        //     descriptionInput.value = '';
+        // })
+        const taskData = {
+            name: nameInput.value.trim(),
+            description: descriptionInput.value,
+            dueDate: dateInput.value,
+            priority: priorityInput.value,
+            status: '',
+            randomId: randomID
+        }
+        const addingTask = async () => {
+            await setDoc(doc(db, "tasks", name), taskData);
+        }
+        addingTask();
+
         ev.preventDefault();
         nameInput.value = ''; //clear the form
         descriptionInput.value = '';
 
-        const newTask = new Task(name, description, dueDate, priority, status);
+        const newTask = new Task(name, description, dueDate, priority, status, randomID);
 
         //tell subscribers that a task was added
         pubsub.publish('taskAdded', newTask);

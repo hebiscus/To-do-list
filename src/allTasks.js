@@ -2,6 +2,8 @@ import { AddTask } from './addTask.js';
 import { pubsub } from './pubsub.js';
 import format from 'date-fns/format';
 import { completedTasks } from './completedTasks.js';
+import { deleteDoc, doc } from 'firebase/firestore';
+import { db } from './index.js';
 
 export const allTasks = {
   list: [],
@@ -148,6 +150,13 @@ export const allTasks = {
     const taskContent = ev.target.closest('div');
     const taskNameP = taskContent.children[1];
     const taskName = taskNameP.innerText;
+    const task = allTasks.list.find(function(task) {
+      return task.name === task.name;
+    });
+
+    const docRef = doc(db, 'tasks', taskName);
+    deleteDoc(docRef);
+
     allTasks.list = allTasks.list.filter(function(nm) {
       return nm.name !== taskName;
     });
