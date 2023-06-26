@@ -24,38 +24,9 @@ const app = initializeApp(firebaseConfig);
 
 // initialise services
 export const db = getFirestore(app);
-const auth = getAuth();
-
-// async function createTasksData() {
-//     try {
-//         const docRef = await addDoc(collection(db, "users"), {
-//           first: "Ada",
-//           last: "Lovelace",
-//           born: 1815
-//         });
-//         console.log("Document written with ID: ", docRef.id);
-//       } catch (e) {
-//         console.error("Error adding document: ", e);
-//       }
-// }
-// createTasksData();
 
 // collection ref
 export const colRef = collection(db, 'tasks');
-
-// get collection data
-// getDocs(colRef)
-//   .then(snapshot => {
-//     // console.log(snapshot.docs)
-//     let tasks = []
-//     snapshot.docs.forEach(doc => {
-//       tasks.push({ ...doc.data(), id: doc.id })
-//     })
-//     console.log(tasks)
-//   })
-//   .catch(err => {
-//     console.log(err.message)
-//   })
 
 onSnapshot(colRef, (snapshot) => {
     let tasks = []
