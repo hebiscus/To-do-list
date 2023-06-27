@@ -69,8 +69,6 @@ export const allTasks = {
     let list = new Set(allTasks.list);
     list.add(taskobject);
     allTasks.list = Array.from(list).sort();
-    
-    localStorage.setItem("tasks", JSON.stringify(allTasks.list));
 
     //tell everyone that a task has been added to the list
     pubsub.publish('tasksUpdated', allTasks.list);
@@ -160,7 +158,6 @@ export const allTasks = {
     allTasks.list = allTasks.list.filter(function(nm) {
       return nm.name !== taskName;
     });
-    localStorage.setItem("tasks", JSON.stringify(allTasks.list));
     taskContent.parentElement.removeChild(taskContent);
 
     pubsub.publish('taskDeleted', allTasks.list);
@@ -180,13 +177,11 @@ export const allTasks = {
     if (statuscheckbox.checked == true) {
       taskObject.status = "completed";
       completedTasks.list.push(taskObject);
-      localStorage.setItem("tasks-completed", JSON.stringify(completedTasks.list));
       allTasks.taskDeleted(ev);
     } else if (statuscheckbox.checked == false) {
       TaskObjectCompleted.status = "uncompleted";
       const taskIndex = completedTasks.list.indexOf(TaskObjectCompleted);
       completedTasks.list.splice(taskIndex, 1);
-      localStorage.setItem("tasks-completed", JSON.stringify(completedTasks.list));
       completedTasks.render();
       allTasks.list.push(TaskObjectCompleted);
     }

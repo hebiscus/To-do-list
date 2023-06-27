@@ -25,15 +25,18 @@ const app = initializeApp(firebaseConfig);
 // initialise services
 export const db = getFirestore(app);
 
-// collection ref
-export const colRef = collection(db, 'tasks');
+// collection reference
+export const tasksCollectionRef = collection(db, 'tasks');
 
-onSnapshot(colRef, (snapshot) => {
+onSnapshot(tasksCollectionRef, (snapshot) => {
     let tasks = []
     snapshot.docs.forEach(doc => {
       tasks.push({ ...doc.data(), id: doc.id })
     })
-    console.log(tasks)
+    console.log(tasks);
+    allTasks.list = tasks;
+    // console.log(allTasks.list)
+    allTasks.render();
 })
 
 function renderTemplate() {
@@ -127,14 +130,6 @@ function renderFirstPage() {
     topSection.append(priorityHeadline, dueHeadline);
 
     AddTask.render(sidebar);
-    
-    if (localStorage.getItem('tasks')) {
-        const savedTasks= JSON.parse(localStorage.getItem("tasks"));
-        allTasks.list = savedTasks;
-        allTasks.render(taskSpace);
-    } else {
-        allTasks.render(taskSpace);
-    }
 };
 
 function renderModules(moduleType) {

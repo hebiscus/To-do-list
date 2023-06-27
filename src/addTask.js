@@ -1,7 +1,7 @@
 import { pubsub } from './pubsub.js';
 import format from 'date-fns/format';
 import { addDoc, setDoc, doc } from 'firebase/firestore';
-import { colRef, db } from './index.js';
+import { db } from './index.js';
 
 export const Task = class {
     constructor(name, description, dueDate, priority, status, id) {
@@ -48,19 +48,6 @@ export const AddTask = {
                 return;
             }
 
-        // addDoc(colRef, {
-        //     name: nameInput.value.trim(),
-        //     description: descriptionInput.value,
-        //     dueDate: dateInput.value,
-        //     priority: priorityInput.value,
-        //     status: '',
-        //     randomId: randomID
-        // })
-        // .then((docRef) => {
-        //     console.log(docRef.id)
-        //     nameInput.value = ''; //clear the form
-        //     descriptionInput.value = '';
-        // })
         const taskData = {
             name: nameInput.value.trim(),
             description: descriptionInput.value,
