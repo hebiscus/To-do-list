@@ -12,6 +12,8 @@ Tools used: JavaScript, HTML, CSS.
 
 https://hebiscus.github.io/To-do-list/
 
+# Firebase implementation (not in pristine condition): 
+https://fir-test-99c46.web.app/
 
 # What could be improved:
 
