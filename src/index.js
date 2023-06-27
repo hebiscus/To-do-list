@@ -150,12 +150,6 @@ function renderModules(moduleType) {
         currentHighlight.classList.toggle("highlight-tab");
         sidebarTabDiv.children[2].classList.toggle("highlight-tab");
         weekTasks.render(taskDiv);
-    } else if (moduleType == "completed" && localStorage.getItem('tasks-completed')) {
-        currentHighlight.classList.toggle("highlight-tab");
-        sidebarTabDiv.children[3].classList.toggle("highlight-tab");
-        const savedCompTasks = JSON.parse(localStorage.getItem("tasks-completed"));
-        completedTasks.list = savedCompTasks;
-        completedTasks.render(taskDiv);
     } else {
         currentHighlight.classList.toggle("highlight-tab");
         sidebarTabDiv.children[3].classList.toggle("highlight-tab");
