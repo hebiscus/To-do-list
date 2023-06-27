@@ -8,7 +8,6 @@ import { initializeApp } from 'firebase/app'
 import {
   getFirestore, collection, addDoc, getDocs, onSnapshot
 } from 'firebase/firestore'
-import { getAuth } from 'firebase/auth'
 
 const firebaseConfig = {
     apiKey: "AIzaSyCrzGh1-ICTqQXDr_68Bwlll8nAddBOF0U",
@@ -29,7 +28,7 @@ export const db = getFirestore(app);
 export const tasksCollectionRef = collection(db, 'tasks');
 
 onSnapshot(tasksCollectionRef, (snapshot) => {
-    let tasks = []
+    let tasks = [];
     snapshot.docs.forEach(doc => {
       tasks.push({ ...doc.data(), id: doc.id })
     })
@@ -129,6 +128,7 @@ function renderFirstPage() {
     topSection.append(priorityHeadline, dueHeadline);
 
     AddTask.render(sidebar);
+    allTasks.render();
 };
 
 function renderModules(moduleType) {
@@ -230,5 +230,6 @@ function sortByDate() {
     }
 }
 
-renderTemplate();
-renderFirstPage();
+
+renderTemplate()
+renderFirstPage()

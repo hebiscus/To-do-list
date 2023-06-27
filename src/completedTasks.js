@@ -2,6 +2,8 @@ import { allTasks } from "./allTasks";
 import { pubsub } from './pubsub.js';
 import { changeDateFormat } from "./allTasks";
 import format from 'date-fns/format';
+import { deleteDoc, updateDoc, doc } from 'firebase/firestore';
+import { db } from './index.js';
 
 export const completedTasks = {
     list: [],
@@ -68,9 +70,10 @@ export const completedTasks = {
         const taskContent = ev.target.closest('div');
         const taskNameP = taskContent.children[1];
         const taskName = taskNameP.innerText;
-        completedTasks.list = completedTasks.list.filter(function(nm) {
-          return nm.name !== taskName;
-        });
+
+        const docRef = doc(db, 'tasks', taskName);
+        deleteDoc(docRef);
+        
         taskContent.parentElement.removeChild(taskContent);
       },
 }

@@ -174,14 +174,14 @@ export const allTasks = {
     const taskObject = allTasks.list.find(function(nm) {
       return nm.name == taskName;
     });
-    const TaskObjectCompleted = completedTasks.list.find(function(nm) {
-      return nm.name == taskName;
-    });
+    // const TaskObjectCompleted = completedTasks.list.find(function(nm) {
+    //   return nm.name == taskName;
+    // });
 
+    // firebase task reference
+    const taskDoc = doc(db, "tasks", taskName);
     if (statuscheckbox.checked == true) {
       // firebase change tasks status
-      const taskDoc = doc(db, "tasks", taskName);
-
       (async () => {
         await updateDoc(taskDoc, {
           status: "completed"
@@ -191,11 +191,13 @@ export const allTasks = {
       taskObject.status = "completed";
       allTasks.render();
     } else if (statuscheckbox.checked == false) {
-      // TaskObjectCompleted.status = "uncompleted";
-      // const taskIndex = completedTasks.list.indexOf(TaskObjectCompleted);
-      // completedTasks.list.splice(taskIndex, 1);
-      // completedTasks.render();
-      // allTasks.list.push(TaskObjectCompleted);
+      (async () => {
+        await updateDoc(taskDoc, {
+          status: "uncompleted"
+        });
+      })();
+      taskObject.status = "uncompleted";
+      completedTasks.render();
     }
   }
 };
