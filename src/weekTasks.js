@@ -16,6 +16,7 @@ export const weekTasks = {
       });
       
       weekTasksList.forEach(task => {
+      if (task.status === "completed") return
       //then the ui stuff for a new task list
       const taskContent = document.createElement("div");
       taskContent.classList.add("task-content");

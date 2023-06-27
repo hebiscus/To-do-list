@@ -8,8 +8,12 @@ export const completedTasks = {
     render: container => {
       const taskDiv = document.querySelector(".task-div");
       taskDiv.replaceChildren();
+
+      const completedTasksList = allTasks.list.filter(function(task) {
+        return task.status == "completed";
+      });
       
-      completedTasks.list.forEach(task => {
+      completedTasksList.forEach(task => {
       //then the ui stuff for a new task list
       const taskContent = document.createElement("div");
       taskContent.classList.add("task-content");

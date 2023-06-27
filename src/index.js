@@ -35,7 +35,6 @@ onSnapshot(tasksCollectionRef, (snapshot) => {
     })
     console.log(tasks);
     allTasks.list = tasks;
-    // console.log(allTasks.list)
     allTasks.render();
 })
 

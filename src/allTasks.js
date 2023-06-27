@@ -2,16 +2,19 @@ import { AddTask } from './addTask.js';
 import { pubsub } from './pubsub.js';
 import format from 'date-fns/format';
 import { completedTasks } from './completedTasks.js';
-import { deleteDoc, doc } from 'firebase/firestore';
+import { deleteDoc, updateDoc, doc } from 'firebase/firestore';
 import { db } from './index.js';
 
 export const allTasks = {
   list: [],
-  render: (container) => {
+  render: () => {
     const taskDiv = document.querySelector(".task-div");
     taskDiv.replaceChildren();
     
     allTasks.list.forEach(task => {
+    //don't render completed tasks
+    if (task.status === "completed") return
+    
     //then the ui stuff for a new task list
     const taskContent = document.createElement("div");
     taskContent.classList.add("task-content");
@@ -152,6 +155,7 @@ export const allTasks = {
       return task.name === task.name;
     });
 
+    // delete task doc from firebase
     const docRef = doc(db, 'tasks', taskName);
     deleteDoc(docRef);
 
@@ -175,15 +179,23 @@ export const allTasks = {
     });
 
     if (statuscheckbox.checked == true) {
+      // firebase change tasks status
+      const taskDoc = doc(db, "tasks", taskName);
+
+      (async () => {
+        await updateDoc(taskDoc, {
+          status: "completed"
+        });
+      })();
+
       taskObject.status = "completed";
-      completedTasks.list.push(taskObject);
-      allTasks.taskDeleted(ev);
+      allTasks.render();
     } else if (statuscheckbox.checked == false) {
-      TaskObjectCompleted.status = "uncompleted";
-      const taskIndex = completedTasks.list.indexOf(TaskObjectCompleted);
-      completedTasks.list.splice(taskIndex, 1);
-      completedTasks.render();
-      allTasks.list.push(TaskObjectCompleted);
+      // TaskObjectCompleted.status = "uncompleted";
+      // const taskIndex = completedTasks.list.indexOf(TaskObjectCompleted);
+      // completedTasks.list.splice(taskIndex, 1);
+      // completedTasks.render();
+      // allTasks.list.push(TaskObjectCompleted);
     }
   }
 };
